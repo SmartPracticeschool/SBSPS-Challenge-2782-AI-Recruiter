@@ -1,5 +1,6 @@
 import React from 'react';
-
+import {Router, Route, Switch} from 'react-router'
+import { RegisterPage } from '../component/RegisterPage/RegisterPage';
 
 const RouterContent = (props)=>{
 
@@ -7,8 +8,8 @@ const RouterContent = (props)=>{
     return(
         <Router>
             <Switch>
-                <Route exact path="/" component={} />
-                <Route exact path="/register" component={} />
+                <Route exact path="/" component={RegisterPage} />
+                <Route exact path="/register" component={RegisterPage} />
             </Switch>
         </Router>
     )
