@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
 import { UploadResume } from '../_Api/User';
 import {connect} from 'react-redux'
-import {UploadResumePage} from './UploadResume'
+import UploadResumePage from './UploadResume'
 
 class RegisterForm extends React.Component {
 

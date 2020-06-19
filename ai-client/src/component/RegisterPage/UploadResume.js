@@ -1,5 +1,7 @@
 import React from 'react';
 import { UploadResume } from '../_Api/User';
+import { history } from '../_Api/location/location';
+import {withRouter} from 'react-router-dom'
 
 const UploadResumePage = (props)=>{
   
@@ -9,9 +11,10 @@ const UploadResumePage = (props)=>{
         e.preventDefault()
         let data = new FormData()
         data.append('file', file)
-        console.log(file)
-        UploadResume(data)
-            .then(res=>console.log(res.data))
+        UploadResume(data, props.user.user.id)
+            .then(res=>{
+                 props.history.push('/')
+            })
             .catch(err=>console.log(err))
     }
     const handleChange = (e)=>{
@@ -47,5 +50,4 @@ const UploadResumePage = (props)=>{
         </div>
     )
 }
-
-export {UploadResumePage}
+export default withRouter(UploadResumePage)
