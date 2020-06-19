@@ -18,6 +18,10 @@ const userSchema =  new mongoose.Schema({
         resume:{
             type:String,
             default:''
+        },
+        is_admin:{
+            type: Boolean,
+            default: false
         }
 })
 

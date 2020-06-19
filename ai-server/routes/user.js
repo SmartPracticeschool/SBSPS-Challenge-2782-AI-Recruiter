@@ -2,8 +2,7 @@ const express =  require('express');
 const router  = express.Router();
 const db = require('../models')
 const multer = require('multer');
-const { updateOne } = require('../models/user');
-
+const {UserLogin, UserRegister} = require('../handlers/auth')
 
 
 const storege =  multer.diskStorage({
@@ -14,6 +13,10 @@ const storege =  multer.diskStorage({
 })
 
 const upload = multer({storage: storege})
+
+
+router.post('/user/register', UserRegister)
+router.post('/user/login', UserLogin)
 
 router.post('/user/:id/resume', upload.single('file') ,async (req,res,next)=>{
 
