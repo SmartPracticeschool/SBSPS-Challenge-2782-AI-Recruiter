@@ -6,14 +6,15 @@ exports.UserRegister = async (req,res,next)=>{
 
           try{
               let user = await db.User.create(req.body)
-                await  user.save()
+              console.log(user)
               let {id, username , email} = user
               let token = jwt.sign({
                   id,
                   email,
                   username
               }, process.env.SECRET_KEY)
-           
+              console.log(token)
+             await user.save()
              return res.status(200).json({
                  id,
                  email,
@@ -22,8 +23,8 @@ exports.UserRegister = async (req,res,next)=>{
              })
           }catch(err){
               return next({
-                  status:400,
-                  message: err.messages
+                  status:402,
+                  message: err.message
               })
           }
 }
