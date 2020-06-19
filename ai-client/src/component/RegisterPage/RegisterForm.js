@@ -1,17 +1,17 @@
 import React,{useState} from 'react';
 import { UploadResume } from '../_Api/User';
 import {connect} from 'react-redux'
-
+import {UploadResumePage} from './UploadResume'
 
 class RegisterForm extends React.Component {
 
     constructor(props){
         super(props)
         this.state={
-            name: "",
+            username: "",
             email:'',
             password:"",
-            file:""
+           
         }
     }
     
@@ -19,31 +19,18 @@ class RegisterForm extends React.Component {
 
     handleSubmit = (e)=>{
         e.preventDefault()
-        console.log(this.state.file)
-        let fileData =  new FormData()
-        fileData.append('file', this.state.file)
-        UploadResume(fileData)
-            .then(res=>console.log(res))
-            .catch(err=>console.log(err))
+        
+        this.props.onSubmitCallback(this.state)
             
     }
-   handleFile = (e)=>{
-        console.log(e.target.files[0])
-        const data = e.target.files[0]
-      
-        this.setState({file:data})
-        
-        let fileName = new FormData()
-        fileName.append('file', data)
-        
-      
-        
-    }
+   
     render(){
         let errors = {}
     return(
         <div>
-            <div className="row p-0">
+           {this.props.user ? 
+           (<UploadResumePage user={this.props.user} />):
+             (<div className="row p-0">
                 <div className="col-lg-7 col-sm-12 p-5 text-center container">
                     <div className="container w-50" >
                         <div className="">
@@ -54,10 +41,10 @@ class RegisterForm extends React.Component {
                                 <div className="form-group">
                                     <input 
                                      type="text"
-                                     name="name"
-                                     value={this.state.name}
+                                     name="username"
+                                     value={this.state.username}
                                      onChange={(e)=> {
-                                         this.setState({name:e.target.value})
+                                         this.setState({username:e.target.value})
                                         }}
                                      className='form-control'
                                     />
@@ -87,7 +74,7 @@ class RegisterForm extends React.Component {
                                     />
                                     <label className="text-error">{errors.name}</label>
                                 </div>
-                                <div className="form-group">
+                                {/* <div className="form-group">
                                     <input
                                      type="file"
                                      name="file"
@@ -96,7 +83,7 @@ class RegisterForm extends React.Component {
                                      encType="multipart/form-data"
                                     />
 
-                                </div>
+                                </div> */}
                                 <div>
                                     <button className="btn btn-primary" type="submit">Register</button>
                                 </div>
@@ -110,7 +97,7 @@ class RegisterForm extends React.Component {
                     </div>
 
                 </div>
-            </div>
+            </div>)}
         </div>
     )
     }

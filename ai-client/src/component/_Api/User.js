@@ -5,7 +5,7 @@ export const UploadResume = (file)=>{
 }
 
 export const UserRegister = (data)=>{
-       return axios.post('/user/register', data)
+       return axios.post('http://localhost:5000/api/user/register', data)
 }
 
 export const UserLogin = (data)=>{
