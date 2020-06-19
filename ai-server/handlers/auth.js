@@ -32,15 +32,17 @@ exports.UserRegister = async (req,res,next)=>{
 exports.UserLogin =  async (req,res ,next)=>{
                 try{
                     let user =  await db.User.findOne({email: req.body.email})
+                    
                     if(user){
                         let isMatch = await user.Compare(req.body.password)
+                        let {id, username, email} = user
                         if(isMatch){
                             let token = jwt.sign({
                                 username,
                                 email,
                                 id,
                                 
-                            }.process.env.SECRET_KEY)
+                            },process.env.SECRET_KEY)
                             return res.status(200).json({
                                 username,
                                 email,

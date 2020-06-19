@@ -23,7 +23,7 @@ const UploadResumePage = (props)=>{
       
     }
     return(
-        <div>
+        <div className='text-center p-5'>
             <div className='container'>
                 <div className="row">
                     <div className="col-lg-5 col-md-5 col-sm-12">
