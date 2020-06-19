@@ -27,10 +27,15 @@ const UploadResumePage = (props)=>{
             <div className='container'>
                 <div className="row">
                     <div className="col-lg-5 col-md-5 col-sm-12">
-                        <div>   </div>
+                        <div className="p-0 upload-image"> 
+                            <img src='./image/upload.jpg' alt="" className="img-fluid" style={{height:'80vh'}} />
+                        </div>
                     </div>
-                    <div className="col-lg-7 col-md-7 col-sm-12">
-                        <form onSubmit={handleSubmit}>
+                    <div className="col-lg-7 col-md-7 col-sm-12 p-5 mt-5">
+                        <div className='text-slide'>
+                            <h2>Upload Resume</h2>
+                        </div>
+                        <form onSubmit={handleSubmit} className="p-5 mt-4 border_ " >
                             <div className="form-group">
                                 <input
                                  name='file'

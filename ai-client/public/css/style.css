@@ -1,0 +1,35 @@
+body{
+    user-select: none;
+}
+.upload-image{
+    overflow: hidden;
+    border-radius: 50px;
+    opacity: 0.8;
+   
+}
+.upload-image img{
+     box-shadow: 3px 10px rgba(27,27,27,0.6)
+}
+.upload-image:hover{
+    transform: scale(1.1)
+    
+}
+.border_{
+    border: 3px dotted blue;
+}
+
+.text-slide{
+
+    animation: slide 3s forwards 0s linear
+}
+
+@keyframes slide{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        transform: translateY(10px);
+        transform: scale(1.2);
+        opacity: 1;
+    }
+}
