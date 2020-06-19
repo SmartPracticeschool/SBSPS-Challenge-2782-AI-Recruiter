@@ -1,36 +1,54 @@
 import React,{useState} from 'react';
 
 
-const RegisterForm = (props)=>{
+class RegisterForm extends React.Component {
 
-    const [name, setName] = useState("")
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("");
-    let errors = {}
-
-    const handleSubmit = ()=>{
-
-            console.log(name, email, password)
+    constructor(props){
+        super(props)
+        this.state={
+            name: "",
+            email:'',
+            password:"",
+            file:""
+        }
     }
+    
+   
 
+    handleSubmit = ()=>{
+
+            
+    }
+   handleFile = (e)=>{
+        console.log(e.target.files[0])
+        const data = e.target.files[0]
+      
+        this.setState({file:data})
+        
+        let fileName = new FormData()
+        fileName.append('file', data)
+      
+        console.log(fileName)
+    }
+    render(){
+        let errors = {}
     return(
         <div>
-            <div className="row">
-                <div className="col-lg-8 col-sm-12">
-                    <div className="container">
+            <div className="row p-0">
+                <div className="col-lg-7 col-sm-12 p-5 text-center container">
+                    <div className="container w-50" >
                         <div className="">
                             <img src="" alt="" />
                         </div>
-                        <div className="form">
-                            <form onSubmit={handleSubmit}>
+                        {/* <div className="container"> */}
+                            <form onSubmit={this.handleSubmit}>
                                 <div className="form-group">
                                     <input 
                                      type="text"
                                      name="name"
-                                     value={name}
+                                     value={this.state.name}
                                      onChange={(e)=> {
-                                         setName(e.target.value)
-                                         console.log(name)
+                                         this.setState({name:e.target.value})
                                         }}
                                      className='form-control'
                                     />
@@ -40,10 +58,9 @@ const RegisterForm = (props)=>{
                                     <input 
                                      type="email"
                                      name="email"
-                                     value={email}
+                                     value={this.state.email}
                                      onChange={(e)=> {
-                                         setEmail(e.target.value)
-                                         console.log(email)
+                                         this.setState({email:e.target.value})
                                         }}
                                      className='form-control'
                                     />
@@ -53,25 +70,41 @@ const RegisterForm = (props)=>{
                                     <input 
                                      type="password"
                                      name="password"
-                                     value={password}
+                                     value={this.state.password}
                                      onChange={(e)=> {
-                                         setPassword(e.target.value)
-                                         console.log(password)
+                                         this.setState({password:e.target.value})
                                         }}
                                      className='form-control'
                                     />
                                     <label className="text-error">{errors.name}</label>
                                 </div>
+                                <div className="form-group">
+                                    <input
+                                     type="file"
+                                     name="file"
+                                     onChange={this.handleFile}
+                                     className='form-control'
+                                     encType="multipart/form-data"
+                                    />
+
+                                </div>
                                 <div>
-                                    <button type="submit">Register</button>
+                                    <button className="btn btn-primary" type="submit">Register</button>
                                 </div>
                             </form>
-                        </div>
+                        {/* </div> */}
                     </div>
+                </div>
+                <div className="col-lg-5 col-sm-12 text-center">
+                    <div className="title">
+                        <h3> Welcome to Our Register Portal</h3>
+                    </div>
+
                 </div>
             </div>
         </div>
     )
+    }
 }
 
 export {RegisterForm}
