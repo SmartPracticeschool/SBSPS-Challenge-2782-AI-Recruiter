@@ -1,5 +1,6 @@
 import React,{useState} from 'react';
 import { UploadResume } from '../_Api/User';
+import {connect} from 'react-redux'
 
 
 class RegisterForm extends React.Component {
