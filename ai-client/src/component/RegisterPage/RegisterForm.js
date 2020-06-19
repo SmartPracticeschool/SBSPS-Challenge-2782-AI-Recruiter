@@ -1,4 +1,5 @@
 import React,{useState} from 'react';
+import { UploadResume } from '../_Api/User';
 
 
 class RegisterForm extends React.Component {
@@ -15,8 +16,14 @@ class RegisterForm extends React.Component {
     
    
 
-    handleSubmit = ()=>{
-
+    handleSubmit = (e)=>{
+        e.preventDefault()
+        console.log(this.state.file)
+        let fileData =  new FormData()
+        fileData.append('file', this.state.file)
+        UploadResume(fileData)
+            .then(res=>console.log(res))
+            .catch(err=>console.log(err))
             
     }
    handleFile = (e)=>{
@@ -27,8 +34,9 @@ class RegisterForm extends React.Component {
         
         let fileName = new FormData()
         fileName.append('file', data)
+        
       
-        console.log(fileName)
+        
     }
     render(){
         let errors = {}

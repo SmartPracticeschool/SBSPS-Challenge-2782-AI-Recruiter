@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const UploadResume = (file)=>{
-        return axios.post('/upload-resume', file)
+        return axios.post('http://localhost:5000/api/user/5eec8f46021a3cb1a1db1c86/resume', file)
 }
 
 export const UserRegister = (data)=>{
