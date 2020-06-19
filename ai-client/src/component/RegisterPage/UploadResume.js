@@ -9,7 +9,7 @@ const UploadResumePage = (props)=>{
         e.preventDefault()
         let data = new FormData()
         data.append('file', file)
-        
+        console.log(file)
         UploadResume(data)
             .then(res=>console.log(res.data))
             .catch(err=>console.log(err))
