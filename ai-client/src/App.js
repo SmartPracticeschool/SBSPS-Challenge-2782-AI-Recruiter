@@ -5,6 +5,7 @@ import { rootStore } from './redux';
 import { setToken } from './component/service/setToken';
 import jwtDecode from 'jwt-decode'
 import { UserAuth, UserLogout } from './redux/actionCreater/user';
+import { NavBar } from './container/NavBar/Navbar';
 const store = rootStore();
 
 
@@ -21,6 +22,7 @@ if(localStorage.jwtToken){
 function App() {
   return (
     <Provider store={store}>
+      <NavBar />
      <RouterContent />
      </Provider>
   );

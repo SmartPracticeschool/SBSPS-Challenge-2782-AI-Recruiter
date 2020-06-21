@@ -33,3 +33,16 @@ body{
         opacity: 1;
     }
 }
+
+nav{
+    height: 60px;
+    background-color: rgba(0, 0, 0, 0.74);
+
+}
+nav .content{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    position: relative;
+    top:12px
+}
