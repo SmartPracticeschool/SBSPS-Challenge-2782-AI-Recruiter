@@ -16,6 +16,7 @@ app.use(express.static('public/resume'))
 
 
 
+
 app.use('/api', UserRoutes)
 
 app.use(function(req,res,next){
