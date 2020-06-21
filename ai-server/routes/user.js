@@ -65,6 +65,7 @@ router.get('/resume-parser', (req,res,next)=>{
         //     .parseResumeUrl('http://localhost:5000/Resume-1592674231670CV.pdf')
         //     .then(res=>console.log(res))
         //     .catch(err=>console.log(err))
+        
         let processData = spawn('python', ['./ml/ExtractInfo.py', 'public/resume/Resume-1592674231670CV.pdf'])
         processData.stdout.on('data', (data)=>{
             console.log(data.toString())
