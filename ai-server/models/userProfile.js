@@ -14,17 +14,20 @@ const userSchema = new mongoose.Schema({
                     type:String,
                     default:''
                 },
-                skills:[
+                skills:
                     {
-                        type:String
+                        type:String,
+                        default:''
                     }
-                ],
-                languages:[{
-                    type:String
-                }],
-                experience:[{
-                    type:String
-                }],
+                ,
+                languages:{
+                    type:String,
+                    default:''
+                },
+                experience:{
+                    type:String,
+                    default:''
+                },
                 user:{
                     type: mongoose.Schema.Types.ObjectId,
                     ref:'User'

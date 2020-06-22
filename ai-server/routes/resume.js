@@ -26,6 +26,13 @@ router.get('/profile', async (req,res, next)=>{
             return next(err)
         }
 })
-
+router.delete('/profile', async (req,res,next)=>{
+    try{
+          let profile = await db.UserProfile.deleteMany();
+          res.send(profile)
+    }catch(err){
+        console.log(err)
+    }
+})
 
 module.exports = router
