@@ -78,6 +78,14 @@ exports.UserProfile = async (req,res, next)=>{
                 userProfile.experience = req.body.experience;
                 userProfile.skills = req.body.skills;
                 userProfile.name = req.body.name;
-                userProfile
+                userProfile.languages = req.body.languages
+                await userProfile.save();
+
+                res.send(userProfile)
+            }catch(err){
+                return next({
+                    status: 404,
+                    message: err.message
+                })
             }
 }
