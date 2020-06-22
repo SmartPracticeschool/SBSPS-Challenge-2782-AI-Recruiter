@@ -8,6 +8,7 @@ const express =  require('express'),
 
 const errorHandler = require('./handlers/error')
 const UserRoutes = require('./routes/user')
+const ResumeRoutes = require('./routes/resume')
 
 app.use(cors())
 app.use(morgan('tiny'))
@@ -18,6 +19,7 @@ app.use(express.static('public/resume'))
 
 
 app.use('/api', UserRoutes)
+app.use('/api', ResumeRoutes)
 
 app.use(function(req,res,next){
       let err = new Error('not found')
