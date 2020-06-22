@@ -1,6 +1,7 @@
 
 const db = require('../models')
 const ResumeParser = require('resume-parser')
+const _ = require('lodash')
 
 exports.ResumeUpload = async (req,res,next)=>{
 
@@ -13,11 +14,28 @@ exports.ResumeUpload = async (req,res,next)=>{
         }
        
          let user = await db.User.findById(req.params.id)
-
-         let profile = await db.UserProfile.create()
+         
+         
          if(user){
+            let resumeParser = await ResumeParser.parseResumeUrl(url)
+            let experience = _.split(resumeParser.experience, '\n')
+            let userProfile = await db.UserProfile.findById(user.profile)
+            if(userProfile){
+                userProfile.experience = experience
+                await userProfile.save()
+            }
+            else{
+                let profile = await db.UserProfile.create({experience: experience})
+                profile.user = req.params.id;
+                user.profile = profile.id
+                await profile.save()
+            }
+            
+            
              user.resume = url
+             
              await user.save();
+            
              return res.send(url)
          }
          else{

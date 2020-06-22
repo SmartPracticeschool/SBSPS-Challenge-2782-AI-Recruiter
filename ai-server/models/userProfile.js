@@ -3,13 +3,16 @@ const mongoose = require('mongoose')
 
 const userSchema = new mongoose.Schema({
                 name: {
-                    type:String
+                    type:String,
+                    default: ''
                 },
                 email:{
-                    type:String
+                    type:String,
+                    default: ''
                 },
                 college:{
                     type:String,
+                    default:''
                 },
                 skills:[
                     {
@@ -19,7 +22,7 @@ const userSchema = new mongoose.Schema({
                 languages:[{
                     type:String
                 }],
-                exprience:[{
+                experience:[{
                     type:String
                 }],
                 user:{
