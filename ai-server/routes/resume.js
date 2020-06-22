@@ -5,6 +5,7 @@ const multer = require('multer');
 const ResumeParser = require('resume-parser')
 const _ = require('lodash')
 const {ResumeUpload} = require('../handlers/resume')
+const {spawn} = require('child_process')
 
 const storege =  multer.diskStorage({
     destination: './public/resume',
@@ -33,6 +34,25 @@ router.delete('/profile', async (req,res,next)=>{
     }catch(err){
         console.log(err)
     }
+})
+
+router.get('/:id/analyse', async (req,res, next)=>{
+        try{
+            let profile = await db.UserProfile.findOne({user:req.params.id});
+            console.log(profile)
+            let ProcessData = await spawn('python', ['ml/Resume_analyser/analyser.py', profile.skills, profile.experience ])
+            ProcessData.stdout.on('data', (data)=>{
+                console.log(data.toString())
+            })
+            ProcessData.stderr.on('data', (err)=>{
+                console.log(err.toString())
+            })
+
+
+
+        }catch(err){
+            console.log(err)
+        }
 })
 
 module.exports = router

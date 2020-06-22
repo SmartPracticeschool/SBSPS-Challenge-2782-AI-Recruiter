@@ -69,3 +69,15 @@ exports.UserLogin =  async (req,res ,next)=>{
 
                 }
 }
+
+
+exports.UserProfile = async (req,res, next)=>{
+
+            try{
+                let userProfile = await db.UserProfile.findOne({user:req.params.id})
+                userProfile.experience = req.body.experience;
+                userProfile.skills = req.body.skills;
+                userProfile.name = req.body.name;
+                userProfile
+            }
+}

@@ -18,14 +18,17 @@ exports.ResumeUpload = async (req,res,next)=>{
          
          if(user){
             let resumeParser = await ResumeParser.parseResumeUrl(url)
+            console.log(resumeParser)
             // let experience = _.split(resumeParser.experience, '\n')
             let userProfile = await db.UserProfile.findById(user.profile)
             if(userProfile){
-                userProfile.experience = experience
+                userProfile.experience = resumeParser.experience
+                userProfile.skills =  resumeParser.skills
                 await userProfile.save()
             }
             else{
-                let profile = await db.UserProfile.create({experience: resumeParser.experience})
+                let profile = await db.UserProfile.create({experience: resumeParser.experience,
+                                                skills: resumeParser.skills})
                 profile.user = req.params.id;
                 user.profile = profile.id
                 await profile.save()
