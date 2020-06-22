@@ -46,3 +46,10 @@ nav .content{
     position: relative;
     top:12px
 }
+
+.main-page{
+    background-image: url('../image/home-2.jpg');
+   height: 650px;
+  max-width: 100%;
+
+}
