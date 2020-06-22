@@ -1,10 +1,8 @@
-const express =  require('express');
-const router  = express.Router();
-const db = require('../models')
-const multer = require('multer');
-const ResumeParser = require('resume-parser')
-const {UserLogin, UserRegister, UserProfile} = require('../handlers/auth')
-const {spawn} = require('child_process')
+const express =  require('express'),
+        router  = express.Router(),
+        db = require('../models'),
+        {UserLogin, UserRegister, UserProfile, UserProfileRequest} = require('../handlers/auth');
+
 
 
 
@@ -20,6 +18,7 @@ router.get('/user', async (req,res,next)=>{
 })
 
 router.put('/user/:id/profile',UserProfile )
+router.get('/user/:id/profile', UserProfileRequest)
 
 
 module.exports = router

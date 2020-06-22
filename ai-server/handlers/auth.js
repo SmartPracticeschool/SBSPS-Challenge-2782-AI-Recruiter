@@ -89,3 +89,17 @@ exports.UserProfile = async (req,res, next)=>{
                 })
             }
 }
+
+exports.UserProfileRequest = async (req,res,next)=>{
+            try{
+                let userProfile = await db.UserProfile.findOne({user:req.params.id})
+                if(userProfile){
+                    res.send(userProfile)
+                }
+            }catch(err){
+                return next({
+                    status: 404,
+                    message: err.message
+                })
+            }
+}
