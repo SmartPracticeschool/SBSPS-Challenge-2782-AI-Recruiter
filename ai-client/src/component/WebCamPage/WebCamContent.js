@@ -1,5 +1,6 @@
 import React,{useCallback, useRef, useState} from 'react';
 import WebCam from 'react-webcam'
+import { UploadResume } from '../_Api/User';
 
 
 
@@ -19,7 +20,7 @@ const WebCamContent = (props)=>{
             'dataavailable',
             handleDataAvailable
         )
-
+        mediaRef.current.start()
     },[webRef, setCapture, mediaRef])
     
     const handleDataAvailable = useCallback(({data})=>{
@@ -31,24 +32,29 @@ const WebCamContent = (props)=>{
     const handleStopCapture = useCallback(()=>{
         mediaRef.current.stop();
         setCapture(false);
-    }, [mediaRef, webRef, setCapture])
-
-    const handleDownload = useCallback(()=>{
         if(recordedData.length){
             const blob = new Blob(recordedData,{
                 type: 'video/webm'
             })
+            let uploadVideo = new FormData()
+            uploadVideo.append('file', blob)
+            UploadResume(uploadVideo, '5eecf2f463e798de20c51d70')
+                .then(res=>console.log(res.data))
+                .catch(err=>console.log(err))
             const url = URL.createObjectURL(blob)
-            window.URL.revokeObjectURL(url)
-            setData([])
+            console.log(url)
         }
-    },[recordedData])
+    }, [mediaRef, webRef, setCapture, recordedData])
+
+
     return(
         <>
         <WebCam
          audio={true}
          ref={webRef}
         />
+        <button onClick={CaptureVideoCallback}>Start</button>
+        <button onClick={handleStopCapture}>Stop</button>
         </>
     )
 
