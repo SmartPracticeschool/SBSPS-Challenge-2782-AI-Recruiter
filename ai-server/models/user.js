@@ -22,6 +22,10 @@ const userSchema =  new mongoose.Schema({
         is_admin:{
             type: Boolean,
             default: false
+        },
+        profile:{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'UserProfile'
         }
 })
 

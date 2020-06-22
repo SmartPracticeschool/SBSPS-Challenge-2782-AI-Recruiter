@@ -2,8 +2,8 @@ const express = require('express');
 const db = require('../models');
 const router = express.Router();
 const multer = require('multer');
-const { route } = require('./user');
-
+const ResumeParser = require('resume-parser')
+const _ = require('lodash')
 
 const storege =  multer.diskStorage({
     destination: './public/resume',
@@ -46,5 +46,17 @@ router.post('/user/:id/resume', upload.single('file') ,async (req,res,next)=>{
         })
     }
 } )
+
+router.get('/resume-parser', async (req,res, next)=>{
+      try{
+            let resumeData = await ResumeParser.parseResumeUrl('http://localhost:5000/Resume-1592674231670CV.pdf')
+            console.log(resumeData.experience)
+            let exprience = _.split(resumeData.experience, '\n')
+            console.log(exprience)
+      }catch(err){
+          console.log(err)
+      }
+})
+
 
 module.exports = router
