@@ -11,3 +11,7 @@ export const UserRegister = (data)=>{
 export const UserLogin = (data)=>{
     return axios.post('/user/login', data)
 }
+
+export const UploadVideo = (data,id)=>{
+    return axios.post(`http://localhost:5000/api/user/${id}/video`, data)
+}
