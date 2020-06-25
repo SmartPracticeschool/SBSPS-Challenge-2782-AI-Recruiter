@@ -35,6 +35,10 @@ const userSchema = new mongoose.Schema({
                 score:{
                     type: String,
                     default: '0'
+                },
+                contact:{
+                    type: Number,
+                    
                 }
 })
 

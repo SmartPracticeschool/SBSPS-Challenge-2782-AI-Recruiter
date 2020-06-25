@@ -79,6 +79,10 @@ exports.UserProfile = async (req,res, next)=>{
                 userProfile.skills = req.body.skills;
                 userProfile.name = req.body.name;
                 userProfile.languages = req.body.languages
+                userProfile.email = req.body.email;
+                userProfile.college = req.body.college
+                userProfile.contact = req.body.contact
+                console.log(req.body)
                 await userProfile.save();
 
                 res.send(userProfile)
@@ -93,8 +97,11 @@ exports.UserProfile = async (req,res, next)=>{
 exports.UserProfileRequest = async (req,res,next)=>{
             try{
                 let userProfile = await db.UserProfile.findOne({user:req.params.id})
+                console.log('hello')
                 if(userProfile){
                     res.send(userProfile)
+                }else{
+                    return res.json('user does not exist')
                 }
             }catch(err){
                 return next({
