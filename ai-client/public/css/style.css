@@ -36,7 +36,9 @@ body{
 
 nav{
     height: 60px;
-    background-color: rgba(0, 0, 0, 0.74);
+    background-color: white;
+    box-shadow: -2px -2px 8px 0px black;
+    background-color: #b3d7ff;
 
 }
 nav .content{
@@ -52,4 +54,37 @@ nav .content{
    height: 650px;
   max-width: 100%;
 
+}
+.profile-text{
+    color: blue;
+    font-weight: bold
+}
+.card{
+    box-shadow: 0px 2px 14px 0px #00000059;
+
+}
+
+.update-btn{
+    align-content: center;
+    display: flex;
+    justify-content:center
+   
+}
+.update-btn button{
+    color: white;
+    font-weight: bold;
+    background-color: blue;
+    height: 50px;
+    width: 200px
+    
+}
+
+button:hover {
+    background-color: white;
+    transition: all 0.6s ease-in-out;
+    
+  
+}
+.update-btn button:hover{
+    color: blue
 }

@@ -16,7 +16,25 @@ class UserProfileContent extends React.Component{
           }
       }
 
+      componentWillReceiveProps({profile}){
+
+        this.setState({name:profile.name, email: profile.email,
+             skills: profile.skills, 
+             experience: profile.experience,
+            //  contact: profile.contact,
+             languages: profile.languages,
+             college: profile.college
+            })
+      }
+
+      handleSubmit = (e)=>{
+            e.preventDefault();
+
+            this.props.onSubmitCallback(this.state)
+      }
+
       render(){
+          let {profile} = this.props
           return(
               <div className="p-5 mt-5">
                   <div className='container'>
@@ -37,11 +55,11 @@ class UserProfileContent extends React.Component{
                                       <div className='row'>
                                           <div className='col-md-6'>
                                               <p>Name</p>
-                                              <h5 className="profile-text">Prabhat Kumar</h5>
+                                              <h5 className="profile-text"></h5>
                                           </div>
                                           <div className='col-md-6'>
                                               <p>College</p>
-                                              <h5 className="profile-text">IIIT bhubaneswar</h5>
+                                              <h5 className="profile-text">{profile.college}</h5>
                                           </div>
                                       </div>
                                       <div className='row'>
@@ -51,32 +69,32 @@ class UserProfileContent extends React.Component{
                                           </div>
                                           <div className='col-md-6'>
                                               <p>Email</p>
-                                              <h5 className="profile-text">b117014@iiit-bh.ac.in</h5>
+                                              <h5 className="profile-text">{profile.email}</h5>
                                           </div>
                                       </div>
                                       <div className='row'>
                                           <div className="col">
                                           <p>skills</p>
-                                          <h6 className="profile-text">hi</h6>
+                                          <h6 className="profile-text">{profile.skills}</h6>
                                           </div>
                                        
                                       </div>
                                       <div className='row'>
                                           <div className="col">
                                           <p>experience</p>
-                                          <p className="profile-text">fjkdj</p>
+                                          <p className="profile-text">{profile.experience}</p>
                                           </div>
                                       </div>
                                   </div>
                                   <hr />
                                   <div className="">
-                                        <form>
+                                        <form onSubmit={this.handleSubmit}>
                                             <div className="row">
                                                 <div className="col-lg-6 col-md-6">
                                                     <div className="form-group">
                                                         <label>Full Name</label>
                                                         <input
-                                                        value={this.state.name}
+                                                        value={profile.name}
                                                         name="name"
                                                         onChange={(e)=>this.setState({name:e.target.value})}
                                                         placeholder="name"
@@ -89,7 +107,7 @@ class UserProfileContent extends React.Component{
                                                     <div className="form-group">
                                                         <label>Email</label>
                                                         <input
-                                                        value={this.state.email}
+                                                        value={profile.email}
                                                         name="email"
                                                         onChange={(e)=>this.setState({email:e.target.value})}
                                                         placeholder="email"
@@ -117,7 +135,7 @@ class UserProfileContent extends React.Component{
                                                     <div className="form-group">
                                                         <label>College</label>
                                                         <input
-                                                        value={this.state.college}
+                                                        value={profile.college}
                                                         name="college"
                                                         onChange={(e)=>this.setState({college:e.target.value})}
                                                         placeholder="college"
@@ -132,7 +150,7 @@ class UserProfileContent extends React.Component{
                                                     <div className="form-group">
                                                         <label>Skills</label>
                                                         <textarea
-                                                        value={this.state.skills}
+                                                        value={profile.skills}
                                                         name="skills"
                                                         onChange={(e)=>this.setState({skills:e.target.value})}
                                                         placeholder="Skills"
@@ -150,7 +168,7 @@ class UserProfileContent extends React.Component{
                                                     <div className="form-group">
                                                         <label>experience</label>
                                                         <textarea
-                                                        value={this.state.experience}
+                                                        value={profile.experience}
                                                         name="experience"
                                                         onChange={(e)=>this.setState({experience:e.target.value})}
                                                         placeholder="experience"

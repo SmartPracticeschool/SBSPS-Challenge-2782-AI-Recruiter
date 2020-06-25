@@ -1,14 +1,16 @@
 import React from 'react';
 import { UserProfileContent } from './UserProfileContent';
-import { UserProfile } from '../_Api/User';
+import { UserProfile, UserProfileUpdateApi } from '../_Api/User';
 import {connect} from 'react-redux'
+import { PageSpinner } from './PageSpinner';
 
 class UserProfilePage extends React.Component{
 
     constructor(props){
         super(props);
         this.state={
-            profile:null
+            profile:null,
+            isLoad: false
         }
     }
 
@@ -16,15 +18,32 @@ class UserProfilePage extends React.Component{
         UserProfile(this.props.user.id)
                 .then(res=>{
                     console.log(res.data)
-                    this.setState({profile: res.data})
+                    this.setState({profile: res.data, isLoad:true})
                 }).catch(err=>console.log(err.message))
-        
+        this.setState({isLoad: false})
+    }
+    onSubmitCallback = (values)=>{
+        console.log(values)
+        UserProfileUpdateApi(data, this.props.user.id)
+            .then(res=>console.log(res.data))
+            .catch(err=>console.log(err))
     }
 
     render(){
-        return(
-            <UserProfileContent />
-        )
+        if(this.state.isLoad){
+            return(
+                <UserProfileContent 
+                profile={this.state.profile}
+                onSubmitCallback={this.onSubmitCallback}
+                />
+            )
+        }
+        else{
+            return(
+                <PageSpinner />
+            )
+        }
+        
     }
 }
 
