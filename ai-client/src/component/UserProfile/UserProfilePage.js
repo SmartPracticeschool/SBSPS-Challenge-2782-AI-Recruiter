@@ -3,6 +3,7 @@ import { UserProfileContent } from './UserProfileContent';
 import { UserProfile, UserProfileUpdateApi } from '../_Api/User';
 import {connect} from 'react-redux'
 import { PageSpinner } from './PageSpinner';
+import {toast} from 'react-toastify';
 
 class UserProfilePage extends React.Component{
 
@@ -24,9 +25,16 @@ class UserProfilePage extends React.Component{
     }
     onSubmitCallback = (values)=>{
         console.log(values)
-        UserProfileUpdateApi(data, this.props.user.id)
-            .then(res=>console.log(res.data))
+        this.setState({isLoad: false})
+        UserProfileUpdateApi(values.profile, this.props.user.id)
+            .then(res=>{
+                this.setState({profile: res.data, isLoad: true})
+                toast.success("Successfully Updated")
+                
+            })
             .catch(err=>console.log(err))
+                           
+
     }
 
     render(){

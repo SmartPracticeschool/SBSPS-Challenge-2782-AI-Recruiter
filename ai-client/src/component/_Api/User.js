@@ -22,5 +22,5 @@ export const UserProfile = (id)=>{
 }
 
 export const UserProfileUpdateApi = (data, id)=>{
-    return axios.put(`${url}/${id}/profile`)
+    return axios.put(`${url}/user/${id}/profile`, data)
 }

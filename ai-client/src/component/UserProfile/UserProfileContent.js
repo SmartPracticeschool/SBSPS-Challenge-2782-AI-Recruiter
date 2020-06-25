@@ -1,4 +1,5 @@
 import React from 'react';
+import { PageSpinner } from './PageSpinner';
 
 
 class UserProfileContent extends React.Component{
@@ -6,25 +7,26 @@ class UserProfileContent extends React.Component{
       constructor(props){
           super(props)
           this.state={
-              name:'',
-              email:'',
-              skills:'',
-              experience:'',
-              languages:'',
-              college:'',
-              contact:''
+              profile: {
+                    name:'',
+                    college: '',
+                    contact:'',
+                    skills:'',
+                    experience: '',
+                    languages:'',
+                    email:''
+              },
+              isLoad: false
           }
       }
 
-      componentWillReceiveProps({profile}){
-
-        this.setState({name:profile.name, email: profile.email,
-             skills: profile.skills, 
-             experience: profile.experience,
-            //  contact: profile.contact,
-             languages: profile.languages,
-             college: profile.college
-            })
+     
+      componentWillMount(){
+          console.log(this.props.profile)
+          this.setState({
+              profile: this.props.profile,
+              isLoad: true
+          })
       }
 
       handleSubmit = (e)=>{
@@ -34,7 +36,10 @@ class UserProfileContent extends React.Component{
       }
 
       render(){
-          let {profile} = this.props
+          let {profile} = this.state
+          let profile2 =this.props.profile
+        
+       
           return(
               <div className="p-5 mt-5">
                   <div className='container'>
@@ -55,11 +60,11 @@ class UserProfileContent extends React.Component{
                                       <div className='row'>
                                           <div className='col-md-6'>
                                               <p>Name</p>
-                                              <h5 className="profile-text"></h5>
+                                              <h5 className="profile-text">{profile2.name}</h5>
                                           </div>
                                           <div className='col-md-6'>
                                               <p>College</p>
-                                              <h5 className="profile-text">{profile.college}</h5>
+                                              <h5 className="profile-text">{profile2.college || ''}</h5>
                                           </div>
                                       </div>
                                       <div className='row'>
@@ -69,20 +74,20 @@ class UserProfileContent extends React.Component{
                                           </div>
                                           <div className='col-md-6'>
                                               <p>Email</p>
-                                              <h5 className="profile-text">{profile.email}</h5>
+                                              <h5 className="profile-text">{profile2.email}</h5>
                                           </div>
                                       </div>
                                       <div className='row'>
                                           <div className="col">
                                           <p>skills</p>
-                                          <h6 className="profile-text">{profile.skills}</h6>
+                                          <h6 className="profile-text">{profile2.skills}</h6>
                                           </div>
                                        
                                       </div>
                                       <div className='row'>
                                           <div className="col">
                                           <p>experience</p>
-                                          <p className="profile-text">{profile.experience}</p>
+                                          <p className="profile-text">{profile2.experience}</p>
                                           </div>
                                       </div>
                                   </div>
@@ -96,7 +101,16 @@ class UserProfileContent extends React.Component{
                                                         <input
                                                         value={profile.name}
                                                         name="name"
-                                                        onChange={(e)=>this.setState({name:e.target.value})}
+                                                        onChange={(e)=>
+                                                           { let name = e.target.value
+                                                            this.setState((prev)=>({
+                                                                ...prev,
+                                                                profile:{
+                                                                    ...prev.profile,
+                                                                    name: name
+                                                                }
+
+                                                            }))}}
                                                         placeholder="name"
                                                         className="form-control"
                                                         />
@@ -109,7 +123,16 @@ class UserProfileContent extends React.Component{
                                                         <input
                                                         value={profile.email}
                                                         name="email"
-                                                        onChange={(e)=>this.setState({email:e.target.value})}
+                                                        onChange={(e)=>
+                                                            { let email= e.target.value
+                                                                this.setState((prev)=>({
+                                                                    ...prev,
+                                                                    profile:{
+                                                                        ...prev.profile,
+                                                                        email
+                                                                    }
+    
+                                                                }))}}
                                                         placeholder="email"
                                                         className="form-control"
                                                         />
@@ -124,7 +147,16 @@ class UserProfileContent extends React.Component{
                                                         <input
                                                         value={this.state.contact}
                                                         name="contact"
-                                                        onChange={(e)=>this.setState({contact:e.target.value})}
+                                                        onChange={(e)=>
+                                                            { let contact = e.target.value
+                                                                this.setState((prev)=>({
+                                                                    ...prev,
+                                                                    profile:{
+                                                                        ...prev.profile,
+                                                                        contact
+                                                                    }
+    
+                                                                }))}}
                                                         placeholder="contact"
                                                         className="form-control"
                                                         />
@@ -137,7 +169,16 @@ class UserProfileContent extends React.Component{
                                                         <input
                                                         value={profile.college}
                                                         name="college"
-                                                        onChange={(e)=>this.setState({college:e.target.value})}
+                                                        onChange={(e)=>
+                                                            { let college = e.target.value
+                                                                this.setState((prev)=>({
+                                                                    ...prev,
+                                                                    profile:{
+                                                                        ...prev.profile,
+                                                                        college
+                                                                    }
+    
+                                                                }))}}
                                                         placeholder="college"
                                                         className="form-control"
                                                         />
@@ -152,7 +193,16 @@ class UserProfileContent extends React.Component{
                                                         <textarea
                                                         value={profile.skills}
                                                         name="skills"
-                                                        onChange={(e)=>this.setState({skills:e.target.value})}
+                                                        onChange={(e)=>
+                                                            { let skills = e.target.value
+                                                                this.setState((prev)=>({
+                                                                    ...prev,
+                                                                    profile:{
+                                                                        ...prev.profile,
+                                                                        skills
+                                                                    }
+    
+                                                                }))}}
                                                         placeholder="Skills"
                                                         className="form-control"
                                                         cols={100}
@@ -170,7 +220,16 @@ class UserProfileContent extends React.Component{
                                                         <textarea
                                                         value={profile.experience}
                                                         name="experience"
-                                                        onChange={(e)=>this.setState({experience:e.target.value})}
+                                                        onChange={(e)=>
+                                                            { let experience = e.target.value
+                                                                this.setState((prev)=>({
+                                                                    ...prev,
+                                                                    profile:{
+                                                                        ...prev.profile,
+                                                                       experience
+                                                                    }
+    
+                                                                }))}}
                                                         placeholder="experience"
                                                         className="form-control"
                                                         cols={100}
@@ -192,6 +251,7 @@ class UserProfileContent extends React.Component{
                   </div>
               </div>
           )
+          
       }
 }
 
