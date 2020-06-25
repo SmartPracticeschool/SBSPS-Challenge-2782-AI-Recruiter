@@ -6,10 +6,11 @@ exports.CompanyRegister = async (req,res,next)=>{
 
           try{
               let user = await db.User.create(req.body)
-              let company = await db.Company.create({company_name:req.body.company, company_user: user.id})
+              console.log(user)
+              let company = await db.Company.create({company_name:req.body.company_name, company_user: user._id})
               console.log(company)
               user.is_admin = true
-              user.company = company.id
+              user.company = company._id
 
               let {id, username , email} = user
               let token = jwt.sign({
