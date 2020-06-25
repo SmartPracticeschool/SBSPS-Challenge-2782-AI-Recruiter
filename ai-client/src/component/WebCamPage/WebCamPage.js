@@ -2,8 +2,10 @@ import React from 'react';
 import RecordRTC from 'recordrtc'
 import WebCam from 'react-webcam'
 import { UploadVideo } from '../_Api/User';
+import {connect} from 'react-redux';
+import {withRouter} from 'react-router-dom'
 
-const WebCamPage = (props)=>{
+const WebCamPages = (props)=>{
      
      let recorder = null
      let webRef = React.useRef()
@@ -14,6 +16,9 @@ const WebCamPage = (props)=>{
      const CheckStartVideo = ()=>{
          if(window.confirm('Start Recording')){
              CaptureVideo()
+         }else{
+             props.history.push('/')
+           
          }
      }
      const CaptureVideo =()=>{
@@ -30,6 +35,7 @@ const WebCamPage = (props)=>{
                         height: 340
                     },
                 })
+                recorder.stream = stream
                 
                
                 recorder.startRecording()
@@ -43,10 +49,12 @@ const WebCamPage = (props)=>{
              let blob = recorder.getBlob();
              let dataProcess = new FormData()
              dataProcess.append('file', blob)
-
-             console.log(props.user.id)
+             recorder.stream.stop()
+   
              UploadVideo(dataProcess, props.user.id)
-                .then(res=>console.log(res.data))
+                .then(res=>{console.log(res.data)
+                   props.history.push('/')
+                })
                 .catch(err=>{console.log(err.error)})
              let url = URL.createObjectURL(blob)
              console.log(url)
@@ -56,9 +64,9 @@ const WebCamPage = (props)=>{
    
     return(
         <>
-        <WebCam />
+        {/* <WebCam />
 
-       
+        */}
         <button onClick={UploadRecording}>Submit</button>
         </>
     )
@@ -70,4 +78,5 @@ function mapStateToProps(state){
     }
 }
 
+const WebCamPage = withRouter(connect(mapStateToProps, null)(WebCamPages))
 export {WebCamPage}
