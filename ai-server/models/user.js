@@ -30,6 +30,10 @@ const userSchema =  new mongoose.Schema({
         video:{
             type:String,
             default:''
+        },
+        company: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Company'
         }
 })
 
