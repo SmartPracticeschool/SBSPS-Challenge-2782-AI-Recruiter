@@ -14,6 +14,12 @@ const CompanyQuestionContent = (props)=>{
     const handleChange = (e)=>{
         e.preventDefault()
      props.onSubmitCallback({question,answer_1,answer_2,answer_3,answer_4,correct})
+     setQuestion('')
+     setAnswer1('')
+     setAnswer2('')
+     setAnswer3('')
+     setAnswer4('')
+     setCorrect('')
     }
 
     return(
