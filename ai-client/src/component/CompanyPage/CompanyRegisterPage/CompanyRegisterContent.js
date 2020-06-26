@@ -1,8 +1,7 @@
 import React,{useState} from 'react';
 import {connect} from 'react-redux'
-import UploadResumePage from './UploadResume'
 
-class RegisterForm extends React.Component {
+class CompanyRegisterContent extends React.Component {
 
     constructor(props){
         super(props)
@@ -10,6 +9,7 @@ class RegisterForm extends React.Component {
             username: "",
             email:'',
             password:"",
+            company_name: ""
            
         }
     }
@@ -27,9 +27,13 @@ class RegisterForm extends React.Component {
         let errors = {}
     return(
         <div>
-           {this.props.user ? 
-           (<UploadResumePage user={this.props.user} />):
-             (<div className="row p-0">
+           <div className="row p-0">
+                 <div className="col-lg-5 col-sm-12 text-center">
+                    <div className="title">
+                        <h3> Welcome to Our Company Register Portal</h3>
+                    </div>
+
+                </div>
                 <div className="col-lg-7 col-sm-12 p-5 text-center container">
                     <div className="container w-50" >
                         <div className="">
@@ -38,6 +42,7 @@ class RegisterForm extends React.Component {
                         {/* <div className="container"> */}
                             <form onSubmit={this.handleSubmit}>
                                 <div className="form-group">
+                                    <label>UserName</label>
                                     <input 
                                      type="text"
                                      name="username"
@@ -46,10 +51,12 @@ class RegisterForm extends React.Component {
                                          this.setState({username:e.target.value})
                                         }}
                                      className='form-control'
+                                     placeholder="username"
                                     />
                                     <label className="text-error">{errors.name}</label>
                                 </div>
                                 <div className="form-group">
+                                    <label>Email: </label>
                                     <input 
                                      type="email"
                                      name="email"
@@ -58,10 +65,12 @@ class RegisterForm extends React.Component {
                                          this.setState({email:e.target.value})
                                         }}
                                      className='form-control'
+                                     placeholder="email"
                                     />
                                     <label className="text-error">{errors.name}</label>
                                 </div>
                                 <div className="form-group">
+                                    <label>Password</label>
                                     <input 
                                      type="password"
                                      name="password"
@@ -70,36 +79,38 @@ class RegisterForm extends React.Component {
                                          this.setState({password:e.target.value})
                                         }}
                                      className='form-control'
+                                     placeholder="password"
                                     />
                                     <label className="text-error">{errors.name}</label>
                                 </div>
-                                {/* <div className="form-group">
-                                    <input
-                                     type="file"
-                                     name="file"
-                                     onChange={this.handleFile}
+                                <div className="form-group">
+                                    <label>Company Name:</label>
+                                    <input 
+                                     type="text"
+                                     name="company_name"
+                                     value={this.state.company_name}
+                                     onChange={(e)=> {
+                                         this.setState({company_name:e.target.value})
+                                        }}
                                      className='form-control'
-                                     encType="multipart/form-data"
+                                     placeholder="company"
                                     />
+                                    <label className="text-error">{errors.name}</label>
+                                </div>
+                             
 
-                                </div> */}
-                                <div>
-                                    <button className="btn btn-primary" type="submit">Register</button>
+                                <div className="update-btn">
+                                    <button className="btn" type="submit">Register</button>
                                 </div>
                             </form>
                         {/* </div> */}
                     </div>
                 </div>
-                <div className="col-lg-5 col-sm-12 text-center">
-                    <div className="title">
-                        <h3> Welcome to Our Register Portal</h3>
-                    </div>
-
-                </div>
-            </div>)}
+                
+            </div>
         </div>
     )
     }
 }
 
-export {RegisterForm}
+export {CompanyRegisterContent}
