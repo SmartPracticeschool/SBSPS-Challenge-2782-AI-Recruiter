@@ -39,10 +39,10 @@ class CompanyRegisterContent extends React.Component {
                     </div>
 
                 </div>
-                <div className="col-lg-5 col-sm-12 p-5 text-center container">
+                <div className="col-lg-5 col-sm-12 p-5 container">
                     <div className="container w-75" >
-                        <div className="">
-                            <img src="" alt="" />
+                        <div className="text-center">
+                            <h2 style={{color:'blue'}}>Company Register</h2>
                         </div>
                         {/* <div className="container"> */}
                             <form onSubmit={this.handleSubmit}>

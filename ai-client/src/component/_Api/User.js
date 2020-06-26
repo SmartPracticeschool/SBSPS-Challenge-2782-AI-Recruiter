@@ -24,3 +24,6 @@ export const UserProfile = (id)=>{
 export const UserProfileUpdateApi = (data, id)=>{
     return axios.put(`${url}/user/${id}/profile`, data)
 }
+export const CompanyRegisterApi = (data)=>{
+    return axios.post(`${url}/company/register`, data)
+}
