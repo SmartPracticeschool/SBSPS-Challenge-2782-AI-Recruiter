@@ -88,3 +88,18 @@ button:hover {
 .update-btn button:hover{
     color: blue
 }
+.img-register h3{
+    position: absolute;
+    top:45%;
+    left:0;
+    right: 0;
+    bottom: 0;
+    letter-spacing: 1px
+    
+}
+.title{
+    position: relative;
+    top:15%;
+    border-radius: 10px;
+    overflow: hidden
+}

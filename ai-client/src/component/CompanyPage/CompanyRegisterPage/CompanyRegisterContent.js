@@ -28,14 +28,19 @@ class CompanyRegisterContent extends React.Component {
     return(
         <div>
            <div className="row p-0">
-                 <div className="col-lg-5 col-sm-12 text-center">
+                 <div className="col-lg-7 col-sm-12 text-center">
                     <div className="title">
-                        <h3> Welcome to Our Company Register Portal</h3>
+                        
+                        <div className="img-register">
+                        
+                            <img className="img-fluid" src="/image/c-register.jpg" alt="" />
+                            <h3 > Welcome to Our Company Register Portal</h3>
+                        </div>
                     </div>
 
                 </div>
-                <div className="col-lg-7 col-sm-12 p-5 text-center container">
-                    <div className="container w-50" >
+                <div className="col-lg-5 col-sm-12 p-5 text-center container">
+                    <div className="container w-75" >
                         <div className="">
                             <img src="" alt="" />
                         </div>
