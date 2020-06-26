@@ -16,4 +16,13 @@ router.get('/company', async (req,res) => {
     }
 })
 
+router.get('/company/test', async (req,res) => {
+    try{
+        let company = await db.Test.find({})
+        res.send(company)
+    }catch(err){
+        console.log(err)
+    }
+})
+
 module.exports = router

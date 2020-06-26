@@ -106,7 +106,7 @@ exports.UploadQuestion = async (req,res, next)=>{
             }
             await test.mcq.push(data)
             await test.save()
-            return es.send(data)
+            return res.send(data)
 
         }else{
             return next({
