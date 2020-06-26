@@ -4,9 +4,14 @@ import { CompanyQuestionContent } from './CompanyQuestionContent';
 class CompanyQuestionPage extends React.Component{
 
 
+    onSubmitCallback = (value)=>{
+        console.log(value)
+    }
     render(){
         return(
-            <CompanyQuestionContent />
+            <CompanyQuestionContent
+            onSubmitCallback={this.onSubmitCallback}
+            />
 
         )
     }

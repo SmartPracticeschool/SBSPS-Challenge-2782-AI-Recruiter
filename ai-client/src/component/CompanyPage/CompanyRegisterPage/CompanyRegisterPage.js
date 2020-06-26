@@ -23,7 +23,7 @@ class RegisterPage extends React.Component{
             .catch(err=>{
                 let data = err
                 console.log(data)
-                this.props.history.push('/')
+                
             })
        
          

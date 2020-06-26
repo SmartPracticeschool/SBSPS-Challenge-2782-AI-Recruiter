@@ -103,3 +103,13 @@ button:hover {
     border-radius: 10px;
     overflow: hidden
 }
+
+
+
+.answer{
+    display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      margin-top:50px
+  }
