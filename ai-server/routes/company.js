@@ -1,10 +1,11 @@
 const express = require('express');
 const db = require('../models');
 const router = express.Router();
-const {CompanyLogin, CompanyRegister} = require('../handlers/company')
+const {CompanyLogin, CompanyRegister, UploadQuestion} = require('../handlers/company')
 
 router.post('/company/register', CompanyRegister)
 router.post('/company/login', CompanyLogin);
+router.post('/company/:id/question/upload', UploadQuestion )
 
 router.get('/company', async (req,res) => {
     try{

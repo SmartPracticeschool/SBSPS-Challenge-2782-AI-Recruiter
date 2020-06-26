@@ -5,10 +5,23 @@ const jwt = require('jsonwebtoken')
 exports.CompanyRegister = async (req,res,next)=>{
 
           try{
+              let tempUser = await db.User.findOne({email: req.body.email})
+
+              if(tempUser){
+                  console.log(tempUser)
+                  return next({
+                      status: 404,
+                      message: 'User already exist'
+                  })
+              }
               let user = await db.User.create(req.body)
               console.log(user)
               let company = await db.Company.create({company_name:req.body.company_name, company_user: user._id})
-              console.log(company)
+              let test = await db.Test.create({company:company.id})
+              company.test = test.id
+              console.log(test)
+              await test.save()
+
               user.is_admin = true
               user.company = company._id
 
@@ -77,4 +90,35 @@ exports.CompanyLogin =  async (req,res ,next)=>{
                     })
 
                 }
+}
+
+
+exports.UploadQuestion = async (req,res, next)=>{
+
+    try{
+        let company = await db.Company.findOne({company_user: req.params.id})
+        if(company){
+            let test = await db.Test.findOne({company: company.id})
+            let data = {
+                question: req.body.question,
+                options: req.body.answer,
+                correct: req.body.correct
+            }
+            await test.mcq.push(data)
+            await test.save()
+            return es.send(data)
+
+        }else{
+            return next({
+                status: 404,
+                message: 'company does not exist'
+            })
+        }
+    }
+    catch(err){
+        return next({
+            status: 404,
+            message: err.message
+        })
+    }
 }

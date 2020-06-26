@@ -4,11 +4,16 @@ const companySchema = new mongoose.Schema({
 
                     company_name: {
                         type: String,
-                        required
+                        required: true
                     },
                     company_user : {
                         type: mongoose.Schema.Types.ObjectId,
                         ref: 'User'
+                    },
+                    test:{
+                        type: mongoose.Schema.Types.ObjectId,
+                        ref: 'Test'
+
                     }
 })
 

@@ -12,7 +12,11 @@ const testShema = new mongoose.Schema({
                 options: [],
                 correct: String
                 
-            }]
+            }],
+            company:{
+                type: mongoose.Schema.Types.ObjectId,
+                ref:'Company'
+            }
 })
 
 const Test = mongoose.model('Test', testShema)
