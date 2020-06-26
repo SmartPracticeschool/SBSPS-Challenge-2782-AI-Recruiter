@@ -27,3 +27,6 @@ export const UserProfileUpdateApi = (data, id)=>{
 export const CompanyRegisterApi = (data)=>{
     return axios.post(`${url}/company/register`, data)
 }
+export const CompanyLoginApi = (data)=>{
+    return axios.post(`${url}/company/login`, data)
+}
