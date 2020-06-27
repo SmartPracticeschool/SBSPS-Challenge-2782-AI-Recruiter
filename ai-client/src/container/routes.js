@@ -9,6 +9,7 @@ import { WebCamPage } from '../component/WebCamPage/WebCamPage';
 import {CompanyRegisterPage} from '../component/CompanyPage/CompanyRegisterPage/CompanyRegisterPage'
 import {CompanyLoginPage} from '../component/CompanyPage/CompanyLoginPage/CompanyLoginPage'
 import { CompanyQuestionPage } from '../component/CompanyPage/CompanyUploadQuestion/CompanyQuestionPage';
+import { AudioRecording } from '../component/WebCamPage/AudioRecording';
 
 const RouterContent = (props)=>{
 
@@ -19,7 +20,7 @@ const RouterContent = (props)=>{
                 <Route exact path="/" component={Homepage} />
                 <Route exact path="/register" component={RegisterPage} />
                 <Route exact path='/profile' component={UserProfilePage} />
-                <Route exact path='/test' component={WebCamPage} />
+                <Route exact path='/test' component={AudioRecording} />
                 <Route exact path="/company/register" component={CompanyRegisterPage} />
                 <Route exact path="/company/login" component={CompanyLoginPage} />
                 <Route exact path="/company/upload/question" component={CompanyQuestionPage} />

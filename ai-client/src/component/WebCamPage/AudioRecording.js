@@ -10,7 +10,7 @@ const AudioRecording = (props)=>{
                 audio: true
           }).then((stream)=>{
               recorder = Recordrtc(stream, {
-                  type: audio
+                  type: 'audio'
               })
 
               recorder.stream =stream;
@@ -23,13 +23,17 @@ const AudioRecording = (props)=>{
     const StopRecording = ()=>{
         recorder.stopRecording()
         let blob = recorder.getBlob()
+        recorder.stream.stop()
         let url = URL.createObjectURL(blob)
         let dataProcess = new FormData()
         dataProcess.append('recording', blob)
     }
 
     return(
-        <div></div>
+        <div>
+            <button onClick={StartRecording} >Start</button>
+            <button onClick={StopRecording}>Stop</button>
+        </div>
     )
 
 }
