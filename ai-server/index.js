@@ -14,7 +14,7 @@ const CompanyRoutes = require('./routes/company')
 app.use(cors())
 app.use(morgan('tiny'))
 app.use(bodyParser.json())
-app.use(express.static('public/resume'))
+app.use(express.static('public'))
 app.use(express.static('ml'))
 
 
