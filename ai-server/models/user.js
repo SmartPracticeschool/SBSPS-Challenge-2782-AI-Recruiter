@@ -34,6 +34,10 @@ const userSchema =  new mongoose.Schema({
         company: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Company'
+        },
+        audio:{
+            type:String,
+            default:''
         }
 })
 
