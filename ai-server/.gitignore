@@ -5,6 +5,7 @@
 /.pnp
 .pnp.js
 /ml
+/index.js
 # testing
 /coverage
 

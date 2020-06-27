@@ -9,6 +9,7 @@ import { WebCamPage } from '../component/WebCamPage/WebCamPage';
 import {CompanyRegisterPage} from '../component/CompanyPage/CompanyRegisterPage/CompanyRegisterPage'
 import {CompanyLoginPage} from '../component/CompanyPage/CompanyLoginPage/CompanyLoginPage'
 import { CompanyQuestionPage } from '../component/CompanyPage/CompanyUploadQuestion/CompanyQuestionPage';
+import { AudioRecording } from '../component/WebCamPage/AudioRecording';
 
 const RouterContent = (props)=>{
 

@@ -4,13 +4,14 @@ const router = express.Router();
 const multer = require('multer');
 const ResumeParser = require('resume-parser')
 const _ = require('lodash')
-const {ResumeUpload, VideoUpload} = require('../handlers/resume')
+const {ResumeUpload, VideoUpload, AudioUpload} = require('../handlers/resume')
 const {spawn} = require('child_process')
 
 const storege =  multer.diskStorage({
-    destination: './public/resume',
+    destination: './public/',
     filename: function(req, file, cb){
-         cb(null, 'Resume-' + Date.now() + file.originalname)
+        console.log(file)
+         cb(null, file.fieldname + Date.now() + file.originalname)
     }
 })
 const upload = multer({storage: storege})
@@ -18,7 +19,8 @@ const upload = multer({storage: storege})
 
 
 router.post('/user/:id/resume', upload.single('file') , ResumeUpload  )
-router.post('/user/:id/video', upload.single('file'), VideoUpload )
+router.post('/user/:id/video', upload.single('video'), VideoUpload )
+router.post('/user/:id/audio', upload.single('audio'), AudioUpload)
 
 
 router.get('/profile', async (req,res, next)=>{
