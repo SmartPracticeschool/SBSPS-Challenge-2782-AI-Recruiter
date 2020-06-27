@@ -21,12 +21,15 @@ const AudioRecording = (props)=>{
     }
 
     const StopRecording = ()=>{
-        recorder.stopRecording()
-        let blob = recorder.getBlob()
-        recorder.stream.stop()
-        let url = URL.createObjectURL(blob)
-        let dataProcess = new FormData()
-        dataProcess.append('recording', blob)
+        recorder.stopRecording(()=>{
+            let blob = recorder.getBlob()
+            recorder.stream.stop()
+            let url = URL.createObjectURL(blob)
+            console.log(url)
+            let dataProcess = new FormData()
+            dataProcess.append('recording', blob)
+        })
+       
     }
 
     return(

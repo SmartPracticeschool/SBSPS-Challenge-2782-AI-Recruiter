@@ -20,7 +20,7 @@ const RouterContent = (props)=>{
                 <Route exact path="/" component={Homepage} />
                 <Route exact path="/register" component={RegisterPage} />
                 <Route exact path='/profile' component={UserProfilePage} />
-                <Route exact path='/test' component={AudioRecording} />
+                <Route exact path='/test' component={WebCamPage} />
                 <Route exact path="/company/register" component={CompanyRegisterPage} />
                 <Route exact path="/company/login" component={CompanyLoginPage} />
                 <Route exact path="/company/upload/question" component={CompanyQuestionPage} />

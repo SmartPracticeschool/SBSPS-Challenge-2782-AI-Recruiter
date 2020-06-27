@@ -1,7 +1,7 @@
 import React from 'react';
 import RecordRTC from 'recordrtc'
 import WebCam from 'react-webcam'
-import { UploadVideo } from '../_Api/User';
+import { UploadVideo, UploadAudio } from '../_Api/User';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom'
 
@@ -9,6 +9,7 @@ const WebCamPages = (props)=>{
      
      let recorder = null
      let webRef = React.useRef()
+     let audioRecorder = null
 
     React.useEffect(()=>{
         CheckStartVideo()
@@ -16,6 +17,7 @@ const WebCamPages = (props)=>{
      const CheckStartVideo = ()=>{
          if(window.confirm('Start Recording')){
              CaptureVideo()
+             CaptureAudio()
          }else{
              props.history.push('/')
            
@@ -24,7 +26,7 @@ const WebCamPages = (props)=>{
      const CaptureVideo =()=>{
             navigator.mediaDevices.getUserMedia({
                 video: true,
-                audio: true,
+                
                 
             }).then(async function(stream){
                 
@@ -44,29 +46,57 @@ const WebCamPages = (props)=>{
 
             })
      }
+
+     const CaptureAudio = ()=>{
+        navigator.mediaDevices.getUserMedia({
+              audio: true
+        }).then((stream)=>{
+            audioRecorder = RecordRTC(stream, {
+                type: 'audio'
+            })
+
+            audioRecorder.stream =stream;
+            audioRecorder.startRecording()
+            
+
+        })
+  }
      const UploadRecording = ()=>{
          recorder.stopRecording(()=>{
-             let blob = recorder.getBlob();
-             let dataProcess = new FormData()
-             dataProcess.append('file', blob)
-             recorder.stream.stop()
+             audioRecorder.stopRecording(()=>{
+                let blobVideo = recorder.getBlob();
+                let blobAudio = audioRecorder.getBlob();
    
-             UploadVideo(dataProcess, props.user.id)
-                .then(res=>{console.log(res.data)
-                   props.history.push('/')
-                })
-                .catch(err=>{console.log(err.error)})
-             let url = URL.createObjectURL(blob)
-             console.log(url)
+                
+                recorder.stream.stop()
+                audioRecorder.stream.stop()
+                let url = URL.createObjectURL(blobVideo)
+                let url2 = URL.createObjectURL(blobAudio)
+                console.log(url, url2)
+                let videoProcess = new FormData()
+                let audioProcess = new FormData()
+                videoProcess.append('video', blobVideo)
+                audioProcess.append('audio', blobAudio)
+                UploadVideo(videoProcess, props.user.id)
+                   .then(res=>{
+                       UploadAudio(audioProcess, props.user.id)
+                            .then(res=>console.log(res.data))
+                            .catch(err=>console.log(err))
+                      props.history.push('/')
+                   })
+                   .catch(err=>{console.log(err)})
+               
+             })
+             
          })
      }
 
    
     return(
         <>
-        {/* <WebCam />
+        <WebCam />
 
-        */}
+       
         <button onClick={UploadRecording}>Submit</button>
         </>
     )
