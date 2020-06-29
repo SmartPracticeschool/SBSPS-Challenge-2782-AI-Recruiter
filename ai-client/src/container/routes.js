@@ -25,7 +25,7 @@ const RouterContent = (props)=>{
                 <Route exact path="/company/register" component={CompanyRegisterPage} />
                 <Route exact path="/company/login" component={CompanyLoginPage} />
                 <Route exact path="/company/upload/question" component={CompanyQuestionPage} />
-                <Route exact path="/user/test" component={InterviewTestPage} />
+                <Route exact path="/user/interview" component={InterviewTestPage} />
             </Switch>
         </Router>
     )
