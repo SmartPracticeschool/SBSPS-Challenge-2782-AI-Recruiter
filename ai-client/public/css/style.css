@@ -126,3 +126,30 @@ button:hover {
     overflow: auto;
     
 }
+.question{
+    height:50px;
+    position:relative;
+    top:20px;
+    left:0;
+    border-radius: 3px;
+    padding: 8px;
+    max-height: 100%;
+    
+    background-color: rgba(142,152,198,0.79)
+}
+.question p{
+    font-weight: bold;
+    font-size: 18px
+}
+.webcam{
+    height:250px;
+    width:500px;
+    position: relative;
+    top:10px;
+    border-radius: 5px;
+}
+.webcam-btn{
+    position: fixed;
+    bottom: 10px;
+    left:150px;
+}

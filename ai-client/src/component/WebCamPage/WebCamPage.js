@@ -5,15 +5,21 @@ import { UploadVideo, UploadAudio } from '../_Api/User';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom'
 
+
+const videoStyle={
+    height:250,
+    width:500
+}
+
 const WebCamPages = (props)=>{
      
      let recorder = null
      let webRef = React.useRef()
      let audioRecorder = null
 
-    React.useEffect(()=>{
-        CheckStartVideo()
-    },[])
+    // React.useEffect(()=>{
+    //     CheckStartVideo()
+    // },[])
      const CheckStartVideo = ()=>{
          if(window.confirm('Start Recording')){
              CaptureVideo()
@@ -93,12 +99,22 @@ const WebCamPages = (props)=>{
 
    
     return(
-        <>
-        <WebCam />
+        < div className="webcam">
+        <WebCam
+        videoConstraints={videoStyle}
+        />
+        <div className="container">
+            <div className="text-center mt-5">
+                <div className="title">
+                    <p className="h5">InterView are based on your video stream</p>
+                </div>
+            </div>
+        </div>
 
-       
-        <button onClick={UploadRecording}>Submit</button>
-        </>
+       <div className="update-btn webcam-btn">
+        <button className="btn" onClick={UploadRecording}>Submit</button>
+        </div>
+        </ div>
     )
 }
 
