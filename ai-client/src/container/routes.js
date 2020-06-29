@@ -10,6 +10,7 @@ import {CompanyRegisterPage} from '../component/CompanyPage/CompanyRegisterPage/
 import {CompanyLoginPage} from '../component/CompanyPage/CompanyLoginPage/CompanyLoginPage'
 import { CompanyQuestionPage } from '../component/CompanyPage/CompanyUploadQuestion/CompanyQuestionPage';
 import { AudioRecording } from '../component/WebCamPage/AudioRecording';
+import { InterviewTestPage } from '../component/TestPage/InterviewTestPage/InterviewTestPage';
 
 const RouterContent = (props)=>{
 
@@ -24,6 +25,7 @@ const RouterContent = (props)=>{
                 <Route exact path="/company/register" component={CompanyRegisterPage} />
                 <Route exact path="/company/login" component={CompanyLoginPage} />
                 <Route exact path="/company/upload/question" component={CompanyQuestionPage} />
+                <Route exact path="/user/test" component={InterviewTestPage} />
             </Switch>
         </Router>
     )

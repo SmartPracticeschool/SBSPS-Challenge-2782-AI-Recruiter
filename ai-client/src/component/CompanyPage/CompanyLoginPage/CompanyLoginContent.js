@@ -27,17 +27,7 @@ class CompanyLoginContent extends React.Component{
     return(
         <div>
            <div className="row p-0 ">
-                 {/* <div className="col-lg-7 col-sm-12 text-center">
-                    <div className="title">
-                        
-                        <div className="img-register">
-                        
-                            <img className="img-fluid" src="/image/c-register.jpg" alt="" />
-                            <h3 > Welcome to Our Company Login Portal</h3>
-                        </div>
-                    </div>
-
-                </div> */}
+                
                 <div className="col-lg-5 col-sm-12 p-5 card container ">
                     <div className="container w-75 card-body " >
                         <div className="text-center">
