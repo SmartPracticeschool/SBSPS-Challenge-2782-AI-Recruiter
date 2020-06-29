@@ -127,19 +127,21 @@ button:hover {
     
 }
 .question{
-    height:50px;
+    height:500px;
     position:relative;
     top:20px;
     left:0;
     border-radius: 3px;
     padding: 8px;
     max-height: 100%;
-    
+    padding: 200px;
     background-color: rgba(142,152,198,0.79)
 }
 .question p{
-    font-weight: bold;
-    font-size: 18px
+    
+    font-size: 40px;
+    font-weight: normal;
+    letter-spacing: 1px
 }
 .webcam{
     height:250px;
@@ -152,4 +154,9 @@ button:hover {
     position: fixed;
     bottom: 10px;
     left:150px;
+}
+.timer{
+    float: right;
+    color: blue;
+    font-weight: bold;
 }
