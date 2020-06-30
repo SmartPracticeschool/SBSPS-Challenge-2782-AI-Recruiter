@@ -8,3 +8,7 @@ export const CompanyQuestionUploadApi = (data, id)=>{
 
     return axios.post(`${url}/company/${id}/question/upload`, data)
 }
+
+export const CompanyApi = ()=>{
+    return axios.get(`${url}/company`)
+}
