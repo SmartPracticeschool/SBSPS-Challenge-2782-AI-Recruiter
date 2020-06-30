@@ -31,10 +31,10 @@ const userSchema =  new mongoose.Schema({
             type:String,
             default:''
         },
-        company: {
+        company: [{
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Company'
-        },
+        }],
         audio:{
             type:String,
             default:''

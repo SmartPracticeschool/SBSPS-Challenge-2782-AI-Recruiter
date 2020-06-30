@@ -7,6 +7,7 @@ exports.UserRegister = async (req,res,next)=>{
           try{
               let user = await db.User.create(req.body)
               console.log(user)
+              user.is_ad
               let {id, username , email} = user
               let token = jwt.sign({
                   id,
