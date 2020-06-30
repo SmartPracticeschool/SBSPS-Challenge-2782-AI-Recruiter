@@ -7,6 +7,18 @@ router.post('/company/register', CompanyRegister)
 router.post('/company/login', CompanyLogin);
 router.post('/company/:id/question/upload', UploadQuestion )
 
+router.get('/company' , async (req,res, next)=>{
+    try{
+        let company = await db.Company.find({})
+        res.send(company)
+    }catch(err){
+        return next({
+            status: 404,
+            message: err.message
+        })
+    }
+} )
+
 router.get('/company', async (req,res) => {
     try{
         let company = await db.Company.find({})

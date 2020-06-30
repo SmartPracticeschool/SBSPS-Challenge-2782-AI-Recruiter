@@ -10,6 +10,7 @@ const errorHandler = require('./handlers/error')
 const UserRoutes = require('./routes/user')
 const ResumeRoutes = require('./routes/resume')
 const CompanyRoutes = require('./routes/company')
+const TestRoutes = require('./routes/test')
 
 app.use(cors())
 app.use(morgan('tiny'))
@@ -20,7 +21,7 @@ app.use(express.static('ml'))
 
 
 
-app.use('/api', UserRoutes, CompanyRoutes)
+app.use('/api', UserRoutes, CompanyRoutes, TestRoutes)
 app.use('/api', ResumeRoutes)
 
 app.use(function(req,res,next){

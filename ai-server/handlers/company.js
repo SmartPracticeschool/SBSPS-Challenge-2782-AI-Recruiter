@@ -122,3 +122,40 @@ exports.UploadQuestion = async (req,res, next)=>{
         })
     }
 }
+
+exports.CompanyInterviewQuestion = async (req,res, next)=>{
+
+    try{
+        let company = await db.Company.findById(req.params.c_id)
+        if(company){
+            let test = await db.Test.findOne({company: req.params.c_id})
+
+            res.send(test.interview)
+        }else{
+            return next({
+                status: 404,
+                message: 'comapny does not exist'
+            })
+        }
+        
+    }catch(err){
+        return next({
+            status: 404,
+            message: err.message
+        })
+    }
+}
+
+exports.UserCompanyTest = async (req, res, next)=>{
+
+    try{
+        let user = await db.User.findById(req.params.id)
+        user.company.push(req.body.c_id);
+        res.send(user)
+    }catch(err){
+        return next({
+            status: 404,
+            message: err.message
+        })
+    }
+}
