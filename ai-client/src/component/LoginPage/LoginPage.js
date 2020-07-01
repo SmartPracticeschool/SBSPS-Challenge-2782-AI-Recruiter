@@ -3,6 +3,7 @@ import { LoginPageContent } from './LoginPageContent';
 import { UserLogin } from '../_Api/User';
 import { setToken } from '../service/setToken';
 import { UserAuth } from '../../redux/actionCreater/user';
+import {connect} from 'react-redux'
 
 class LoginPage extends React.Component{
 
@@ -12,10 +13,12 @@ class LoginPage extends React.Component{
             .then(res=>{
                 setToken(res.data.token)
                 localStorage.setItem('jwtToken', res.data.token)
+                this.props.userAdd(res.data)
             })
     }
     componentDidUpdate(){
-        if(!this.props.user.isAuthenticated){
+        console.log(this.props.user.isAuthenticated)
+        if(this.props.user.isAuthenticated){
             this.props.history.push('/')
         }
        
@@ -38,7 +41,7 @@ function mapStateToDispatch(dispatch){
 }
 function mapStateToProps(state){
     return{
-        user: state.user.user
+        user: state.user
     }
 }
 
