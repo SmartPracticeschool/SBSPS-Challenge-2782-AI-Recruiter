@@ -1,14 +1,16 @@
-import Axios from "axios"
 import axios from 'axios';
 
-const url = 'http://localhost:5000/api'
+
 
 
 export const CompanyQuestionUploadApi = (data, id)=>{
 
-    return axios.post(`${url}/company/${id}/question/upload`, data)
+    return axios.post(`/api/company/${id}/question/upload`, data)
 }
 
 export const CompanyApi = ()=>{
-    return axios.get(`${url}/company`)
+    return axios.get('/api/company')
+}
+export const UserCompanyTestApi = (id,c_id)=>{
+    return axios.post(`/api/company/${id}/add`, {c_id});
 }

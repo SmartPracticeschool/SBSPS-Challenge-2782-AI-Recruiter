@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 import { CompanyApi } from '../_Api/Company';
 import { CompanyHomePageContent } from './CompanyHomePageContent';
 import { PageSpinner } from '../UserProfile/PageSpinner';
+import {connect} from 'react-redux'
 
 class CompanyHomePage extends Component{
 
@@ -24,10 +25,11 @@ class CompanyHomePage extends Component{
 
 
     render(){
-        if(this.state.isLoad){
+        if(this.state.isLoad && this.props.user){
         return(
             <CompanyHomePageContent 
                 data = {this.state.data}
+                user={this.props.user}
                 />
 
         )}else{
@@ -37,5 +39,13 @@ class CompanyHomePage extends Component{
         }
     }
 }
+
+function mapStateToProps(state){
+    return{
+        user: state.user.user
+    }
+}
+
+CompanyHomePage = connect(mapStateToProps, null)(CompanyHomePage)
 
 export {CompanyHomePage}

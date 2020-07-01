@@ -22,7 +22,7 @@ export const UploadAudio = (data,id)=>{
 
 
 export const UserProfile = (id)=>{
-    return axios.get(`http://localhost:5000/api/user/${id}/profile`)
+    return axios.get(`/user/${id}/profile`)
 }
 
 export const UserProfileUpdateApi = (data, id)=>{

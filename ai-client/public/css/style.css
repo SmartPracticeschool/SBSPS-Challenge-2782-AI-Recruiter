@@ -160,3 +160,58 @@ button:hover {
     color: blue;
     font-weight: bold;
 }
+.company-list{
+    display: flex;
+
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    position: relative;
+    top:100px;
+    
+}
+.title-image{
+    overflow: hidden;
+    height: 200px
+}
+
+.apply-btn{
+    background-color: rgba(47,84,183,0.74);
+    overflow: hidden;
+    border-radius: 3px;
+    width: 50%;
+   }
+   .apply-btn button{
+      color: white;
+       font-weight: bold;
+       letter-spacing: 0.7px;
+       padding-left:50px;
+       
+   }
+   .apply-btn:hover{
+       background-color: blue;
+   }
+   .apply-btn button:hover{
+       color:blue
+   }
+   .company-title{
+    position: absolute;
+    top:25%;
+    left:17%;
+    bottom: 0;
+    
+}
+.company-title span{
+    font-weight: normal;
+    font-size: 50px;
+}
+
+.typist-title{
+    animation: blinker 5s linear forwards;
+}
+
+@keyframes blinker {
+    0% { opacity: 1.0; }
+    50% { opacity: 0.8; }
+    100% { opacity: 1.0; }
+  }
