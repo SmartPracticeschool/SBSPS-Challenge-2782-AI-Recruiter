@@ -182,8 +182,17 @@ exports.UserRegisteredCompany = async (req,res, next)=>{
 
     try{
           let user =  await db.User.findById(req.params.id);
+          let company={}
           if(user){
-              res.send(user.company)
+             await user.populate('company')
+                                    .execPopulate((err, result)=>{
+                                        company = result
+                                        console.log(result)
+                                        res.send(result.company)
+                                    })
+            
+              
+            
           }else{
               return next({
                   status: 400,

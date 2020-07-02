@@ -1,7 +1,8 @@
 const express =  require('express'),
         router  = express.Router(),
         db = require('../models'),
-        {UserLogin, UserRegister, UserProfile, UserProfileRequest} = require('../handlers/auth');
+        {UserLogin, UserRegister, UserProfile, UserProfileRequest} = require('../handlers/auth'),
+        {UserRegisteredCompany} = require('../handlers/company');
 
 
 
@@ -19,6 +20,7 @@ router.get('/user', async (req,res,next)=>{
 
 router.put('/user/:id/profile',UserProfile )
 router.get('/user/:id/profile', UserProfileRequest)
+router.get('/user/:id/registered', UserRegisteredCompany);
 router.delete('/user/:id/delete', async (req,res,next)=>{
         try{
             let user = await db.User.findByIdAndRemove(req.params.id)
