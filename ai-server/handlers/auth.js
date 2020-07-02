@@ -6,6 +6,7 @@ exports.UserRegister = async (req,res,next)=>{
 
           try{
               let user = await db.User.create(req.body)
+              
               console.log(user)
               user.is_ad
               let {id, username , email} = user
@@ -98,11 +99,17 @@ exports.UserProfile = async (req,res, next)=>{
 exports.UserProfileRequest = async (req,res,next)=>{
             try{
                 let userProfile = await db.UserProfile.findOne({user:req.params.id})
+                let user = await db.User.findById(req.params.id)
                 console.log('hello')
                 if(userProfile){
                     res.send(userProfile)
                 }else{
-                    return res.json('user does not exist')
+                    let tempProfile = await db.UserProfile.create({user: user._id});
+                    tempProfile.profile = tempProfile._id;
+                    await tempProfile.save()
+                    res.send(tempProfile)
+
+
                 }
             }catch(err){
                 return next({
