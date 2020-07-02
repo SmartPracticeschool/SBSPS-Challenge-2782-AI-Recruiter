@@ -279,3 +279,7 @@ button:hover {
 .drop-down:hover .drop-btn {
   background-color: #7078a2;;
 }
+.company-img img{
+    width: 100%;
+    height: 200px;
+}

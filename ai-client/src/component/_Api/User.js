@@ -34,3 +34,7 @@ export const CompanyRegisterApi = (data)=>{
 export const CompanyLoginApi = (data)=>{
     return axios.post(`${url}/company/login`, data)
 }
+
+export const UserRegisterdApi = (id)=>{
+    return axios.get(`/api/user/${id}/registered`)
+}
