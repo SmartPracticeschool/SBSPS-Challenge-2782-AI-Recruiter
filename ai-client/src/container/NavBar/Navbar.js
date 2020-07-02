@@ -12,9 +12,18 @@ const NavBars = (props)=>{
     return(
         <nav>
             <div className='content'>
-                {props.user.isAuthenticated ? ( <div><a href="#" onClick={Logout} >Logout</a></div>)
-                
-            : (<>
+                {props.user.isAuthenticated ? (
+                    <div className="text-center nav-content">
+                        <div className="flex ">
+                            <div className=""><a href="/profile">profile</a></div>
+                            <div className="ml-5"><a href="/company">Company</a></div>
+                            <div className="ml-5"><a href="/">Dashboard</a></div>
+                            <div className="ml-5"><a href="/">Test</a></div>
+
+                        </div>
+                    <div className="ml-5"><a href="#" onClick={Logout} >Logout</a></div>
+                    </div>
+            ): (<>
                 <div className="p-2"><a href="/">Home</a></div>
                 <div className="drop">
                 <div className="company">

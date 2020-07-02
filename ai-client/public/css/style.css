@@ -55,6 +55,25 @@ nav .drop{
     right: 0;
     top:10px;
 }
+
+.nav-content{
+    display: flex;
+    position: absolute;
+    top:15px;
+    left:40%;
+}
+.nav-content .flex{
+    display: inline;
+    display: flex;
+    
+    
+}
+.nav-content a{
+    color: rgb(255,255,255);
+    font-size: 17px;
+    font-weight: bold;
+}
+
 .main-page{
     background-image: url('../image/home-2.jpg');
    height: 650px;
