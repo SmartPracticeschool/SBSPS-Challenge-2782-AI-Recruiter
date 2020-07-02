@@ -12,3 +12,4 @@ module.exports.User =  require('./user')
 module.exports.UserProfile = require('./userProfile');
 module.exports.Test = require('./Test')
 module.exports.Company = require('./Company')
+module.exports.UserScore = require('./userScore')
