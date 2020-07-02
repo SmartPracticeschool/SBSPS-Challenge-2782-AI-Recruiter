@@ -14,7 +14,17 @@ const companySchema = new mongoose.Schema({
                         type: mongoose.Schema.Types.ObjectId,
                         ref: 'Test'
 
-                    }
+                    },
+                    description:{
+                        Type: String,
+                        default: ""
+                    },
+                    user_apply:[
+                        {
+                            type: mongoose.Schema.Types.ObjectId,
+                            ref: 'User'
+                        }
+                    ]
 })
 
 const Company = mongoose.model('Company', companySchema);

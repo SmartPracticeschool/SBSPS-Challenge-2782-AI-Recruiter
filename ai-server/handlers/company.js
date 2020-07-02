@@ -149,9 +149,47 @@ exports.CompanyInterviewQuestion = async (req,res, next)=>{
 exports.UserCompanyTest = async (req, res, next)=>{
 
     try{
+
         let user = await db.User.findById(req.params.id)
-        user.company.push(req.body.c_id);
-        res.send(user)
+        let company = await db.Company.findById(req.body.c_id)
+        console.log(user)
+        console.log(company)
+        console.log(company.user_apply.includes(user._id))
+        if(user.company.includes(req.body.c_id))
+        {
+            console.log(user._id)
+            return next({
+                status: 404,
+                message: "you are already registered for this compnay"
+            })
+        }else{
+            await user.company.push(company._id);
+             user.save()
+            await company.user_apply.push(req.params.id);
+           company.save()
+           res.send(user)
+        }
+        
+    }catch(err){
+        return next({
+            status: 404,
+            message: err.message
+        })
+    }
+}
+
+exports.UserRegisteredCompany = async (req,res, next)=>{
+
+    try{
+          let user =  await db.User.findById(req.params.id);
+          if(user){
+              res.send(user.company)
+          }else{
+              return next({
+                  status: 400,
+                  message: "user does not exist"
+              })
+          }
     }catch(err){
         return next({
             status: 404,

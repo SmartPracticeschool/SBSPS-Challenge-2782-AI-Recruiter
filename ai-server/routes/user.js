@@ -19,6 +19,18 @@ router.get('/user', async (req,res,next)=>{
 
 router.put('/user/:id/profile',UserProfile )
 router.get('/user/:id/profile', UserProfileRequest)
+router.delete('/user/:id/delete', async (req,res,next)=>{
+        try{
+            let user = await db.User.findByIdAndRemove(req.params.id)
+            await user.save()
+            res.status(200).json("done")
+        }catch(err){
+            return next({
+                status: 404,
+                message: err.message
+            })
+        }
+})
 
 
 module.exports = router
