@@ -6,9 +6,9 @@ exports.UserRegister = async (req,res,next)=>{
 
           try{
               let user = await db.User.create(req.body)
-              
-              console.log(user)
-              user.is_ad
+              let tempProfile = await db.UserProfile.create({user: user._id});
+                    user.profile = tempProfile._id;
+                    await tempProfile.save()
               let {id, username , email} = user
               let token = jwt.sign({
                   id,
@@ -105,7 +105,7 @@ exports.UserProfileRequest = async (req,res,next)=>{
                     res.send(userProfile)
                 }else{
                     let tempProfile = await db.UserProfile.create({user: user._id});
-                    tempProfile.profile = tempProfile._id;
+                    user.profile = tempProfile._id;
                     await tempProfile.save()
                     res.send(tempProfile)
 

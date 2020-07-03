@@ -16,8 +16,13 @@ const companySchema = new mongoose.Schema({
 
                     },
                     description:{
-                        Type: String,
+                        type: String,
                         default: ""
+                    },
+                    url:{
+                        type: String,
+                        default:""
+                        
                     },
                     user_apply:[
                         {

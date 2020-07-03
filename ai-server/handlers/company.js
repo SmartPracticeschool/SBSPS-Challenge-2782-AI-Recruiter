@@ -16,7 +16,7 @@ exports.CompanyRegister = async (req,res,next)=>{
               }
               let user = await db.User.create(req.body)
               console.log(user)
-              let company = await db.Company.create({company_name:req.body.company_name, company_user: user._id})
+              let company = await db.Company.create({company_name:req.body.company_name, company_user: user._id, url: req.body.url, description: req.body.description})
               let test = await db.Test.create({company:company.id})
               company.test = test.id
               console.log(test)

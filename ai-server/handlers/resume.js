@@ -34,7 +34,7 @@ exports.ResumeUpload = async (req,res,next)=>{
                 await profile.save()
             }
             
-            
+            console.log(userProfile)
              user.resume = url
              
              await user.save();
