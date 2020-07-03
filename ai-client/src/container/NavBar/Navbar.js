@@ -17,7 +17,7 @@ const NavBars = (props)=>{
                         <div className="flex ">
                             <div className=""><a href="/profile">profile</a></div>
                             <div className="ml-5"><a href="/company">Company</a></div>
-                            <div className="ml-5"><a href="/">Dashboard</a></div>
+                            <div className="ml-5"><a href="/user/dashboard">Dashboard</a></div>
                             <div className="ml-5"><a href="/">Test</a></div>
 
                         </div>

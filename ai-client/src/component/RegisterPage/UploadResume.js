@@ -11,9 +11,9 @@ const UploadResumePage = (props)=>{
         e.preventDefault()
         let data = new FormData()
         data.append('file', file)
-        UploadResume(data, props.user.user.id)
+        UploadResume(data, props.user.id)
             .then(res=>{
-                 props.history.push('/')
+                 props.history.push('/profile')
             })
             .catch(err=>console.log(err))
     }

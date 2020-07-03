@@ -25,6 +25,7 @@ class RegisterPage extends React.Component{
             <RegisterForm
             onSubmitCallback = {this.onSubmitCallback}
             user={this.props.user}
+            isAuthenticated={this.props.isAuthenticated}
             />
         )
     }
@@ -32,7 +33,8 @@ class RegisterPage extends React.Component{
 
 function mapStateToProps(state){
     return{
-        user: state.user
+        isAuthenticated: state.user.isAuthenticated,
+        user: state.user.user
     }
 }
 

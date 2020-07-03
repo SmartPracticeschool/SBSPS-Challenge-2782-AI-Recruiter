@@ -27,7 +27,7 @@ class RegisterForm extends React.Component {
         let errors = {}
     return(
         <div>
-           {this.props.user ? 
+           {this.props.isAuthenticated ? 
            (<UploadResumePage user={this.props.user} />):
              (<div className="row p-0">
                 <div className="col-lg-7 col-sm-12 p-5 text-center container">
@@ -38,6 +38,7 @@ class RegisterForm extends React.Component {
                         {/* <div className="container"> */}
                             <form onSubmit={this.handleSubmit}>
                                 <div className="form-group">
+                                    <label>Username</label>
                                     <input 
                                      type="text"
                                      name="username"
@@ -50,6 +51,7 @@ class RegisterForm extends React.Component {
                                     <label className="text-error">{errors.name}</label>
                                 </div>
                                 <div className="form-group">
+                                    <label>Email</label>
                                     <input 
                                      type="email"
                                      name="email"
@@ -62,6 +64,7 @@ class RegisterForm extends React.Component {
                                     <label className="text-error">{errors.name}</label>
                                 </div>
                                 <div className="form-group">
+                                    <label>Password</label>
                                     <input 
                                      type="password"
                                      name="password"

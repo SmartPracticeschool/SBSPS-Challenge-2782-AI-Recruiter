@@ -22,11 +22,11 @@ export const UploadAudio = (data,id)=>{
 
 
 export const UserProfile = (id)=>{
-    return axios.get(`/user/${id}/profile`)
+    return axios.get(`/api/user/${id}/profile`)
 }
 
 export const UserProfileUpdateApi = (data, id)=>{
-    return axios.put(`${url}/user/${id}/profile`, data)
+    return axios.put(`/api/user/${id}/profile`, data)
 }
 export const CompanyRegisterApi = (data)=>{
     return axios.post(`${url}/company/register`, data)

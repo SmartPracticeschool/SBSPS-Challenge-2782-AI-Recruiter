@@ -9,7 +9,9 @@ class CompanyRegisterContent extends React.Component {
             username: "",
             email:'',
             password:"",
-            company_name: ""
+            company_name: "",
+            url:"",
+            description:""
            
         }
     }
@@ -99,6 +101,35 @@ class CompanyRegisterContent extends React.Component {
                                         }}
                                      className='form-control'
                                      placeholder="company"
+                                    />
+                                    <label className="text-error">{errors.name}</label>
+                                </div>
+                                <div className="form-group">
+                                    <label>Image Url</label>
+                                    <input 
+                                     type="text"
+                                     name="url"
+                                     value={this.state.url}
+                                     onChange={(e)=> {
+                                         this.setState({url:e.target.value})
+                                        }}
+                                     className='form-control'
+                                     placeholder="Image Url"
+                                    />
+                                    <label className="text-error">{errors.name}</label>
+                                </div>
+                                <div className="form-group">
+                                    <label>Description</label>
+                                    <textarea
+                                     type="text"
+                                     name="description"
+                                     value={this.state.description}
+                                     onChange={(e)=> {
+                                         this.setState({description:e.target.value})
+                                        }}
+                                     className='form-control'
+                                     placeholder="Description"
+                                     row={3}
                                     />
                                     <label className="text-error">{errors.name}</label>
                                 </div>
