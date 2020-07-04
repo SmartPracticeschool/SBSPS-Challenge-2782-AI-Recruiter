@@ -7,6 +7,7 @@ const NavBars = (props)=>{
     const Logout = ()=>{
             localStorage.clear()
             props.logout()
+            window.location.replace('/')
     }
     console.log(props.user.isAuthenticated)
     return(
@@ -14,6 +15,14 @@ const NavBars = (props)=>{
             <div className='content'>
                 {props.user.isAuthenticated ? (
                     <div className="text-center nav-content">
+                        {props.user.user.is_admin ? (
+                                 <div className="flex ">
+                                 <div className=""><a href="/company/upload/question">Upload Question</a></div>
+                                 <div className="ml-5"><a href="/company">Company</a></div>
+                                 
+     
+                             </div>
+                        ):(
                         <div className="flex ">
                             <div className=""><a href="/profile">profile</a></div>
                             <div className="ml-5"><a href="/company">Company</a></div>
@@ -21,6 +30,8 @@ const NavBars = (props)=>{
                             <div className="ml-5"><a href="/">Test</a></div>
 
                         </div>
+                        )}
+                       
                     <div className="ml-5"><a href="#" onClick={Logout} >Logout</a></div>
                     </div>
             ): (<>
@@ -55,7 +66,8 @@ const NavBars = (props)=>{
 
 function mapStateToProps(state){
     return{
-        user: state.user
+        user: state.user,
+        
     }
 }
 
