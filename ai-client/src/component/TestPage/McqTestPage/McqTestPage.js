@@ -4,6 +4,7 @@ import { UserStatusTestApi } from '../../_Api/User';
 import {connect} from 'react-redux'
 import { PageSpinner } from '../../UserProfile/PageSpinner';
 import { InterviewStartPage } from '../InterviewTestPage/InterviewStartPage';
+import { UserStatus } from '../../../redux/actionCreater/userTest';
 
 class McqTestPage extends React.Component{
 
@@ -21,6 +22,7 @@ class McqTestPage extends React.Component{
             .then(res=>{
                 this.setState({data: res.data})
                 console.log(res.data)
+                this.props.UserScore(res.data)
             })
             .catch(err=>console.log(err))
     }
@@ -52,6 +54,11 @@ function mapStateToProps(state){
         user: state.user.user
     }
 }
+function mapStateToDispatch(dispatch){
+    return{
+        UserScore: (data)=>dispatch(UserStatus(data))
+    }
+}
 
-McqTestPage = connect(mapStateToProps, null)(McqTestPage)
+McqTestPage = connect(mapStateToProps, mapStateToDispatch)(McqTestPage)
 export {McqTestPage}

@@ -8,7 +8,7 @@ class InterviewTestPage extends React.Component{
 
     render(){
 
-        const c_id = this.props.match.params.id
+        const c_id = this.props.test._id
         console.log(c_id)
         if(this.props.isAuthenticated){
         return(
@@ -30,7 +30,8 @@ class InterviewTestPage extends React.Component{
 function mapStateToProps(state){
     return{
         user: state.user.user,
-        isAuthenticated: state.user.isAuthenticated
+        isAuthenticated: state.user.isAuthenticated,
+        test: state.test.test
     }
 }
 

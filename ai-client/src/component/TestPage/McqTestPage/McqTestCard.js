@@ -56,13 +56,9 @@ const McqTestCard = (props)=>{
             setVal(e.target.value)
             
     }
-    // const handleSubmit = ()=>{
-    //         if(val === data[counter].correct ){
-    //             let questionScore = score+1;
-    //             setScore(questionScore)
-                
-    //         }
-    // }
+    const handleSubmit = ()=>{
+            props.SubmitTest(score)
+    }
     const nextQuestion = ()=>{
         if(val === data[counter].correct ){
             let questionScore = score+1;
@@ -72,8 +68,10 @@ const McqTestCard = (props)=>{
         }
         setVal("")
         setCount(counter+1)
+        console.log(counter)
         document.querySelector('.q-option').checked = false
     }
+
     return(
         <div className="card">
              <div className="ml-3">
@@ -129,7 +127,10 @@ const McqTestCard = (props)=>{
                         
                     </div>
                         <div className="update-btn">
-                            <button className="btn" onClick={nextQuestion}>Next Question</button>
+                            {counter===data.length-1 ? (
+                                <button className="btn" onClick={handleSubmit}>Submit Test</button>
+                            ):( <button className="btn" onClick={nextQuestion}>Next Question</button>)}
+                           
 
                         </div>
                 </div>

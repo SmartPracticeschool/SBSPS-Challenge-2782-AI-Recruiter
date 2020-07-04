@@ -48,12 +48,12 @@ const InterviewQuestion = (props)=>{
     }
     const timer = ()=>{
         let now = 0
-       
+        let clock = 0
         let time = setInterval(()=>{
             now+=1;
-            let clock = 60 - now
-            document.querySelector('.timer').innerHTML = clock + "s"
-            if(clock < 0){
+            clock = 60 - now
+            document.querySelector('.timer').innerHTML = (clock + "s") || ""
+            if(clock < 1){
                 clearInterval(time)
                
             }

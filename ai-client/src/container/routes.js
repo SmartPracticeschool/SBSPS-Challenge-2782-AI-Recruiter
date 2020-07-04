@@ -34,6 +34,7 @@ const RouterContent = (props)=>{
                 <Route exact path="/company/login" component={CompanyLoginPage} />
                 <Route exact path="/company/upload/question" component={CompanyQuestionPage} />
                 <Route exact path="/user/:id/test" component={McqTestPage} />
+                <Route exact path="/user/interview" component={InterviewTestPage} />
                 <Route exact path="/company" component={CompanyHomePage} />
                 <Route exact path="/test" component={McqTestPage} />
 
