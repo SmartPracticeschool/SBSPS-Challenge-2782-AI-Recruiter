@@ -3,9 +3,7 @@ const db = require('../models');
 exports.UserTestScore = async (req,res, next)=>{
 
     try{
-        let userScore = await db.UserScore.find({
-            $and:[{company: req.body.c_id}, {user: req.body.user_id}]
-        })
+        let userScore = await db.UserScore.findById(req.body.id)
         if(userScore){
             userScore.test_score = req.body.score;
             userScore.is_mcq_completed = true
