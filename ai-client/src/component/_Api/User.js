@@ -10,7 +10,7 @@ export const UserRegister = (data)=>{
 }
 
 export const UserLogin = (data)=>{
-    return axios.post('/api//user/login', data)
+    return axios.post('/api/user/login', data)
 }
 
 export const UploadVideo = (data,id)=>{
