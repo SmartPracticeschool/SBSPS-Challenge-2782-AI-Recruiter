@@ -29,7 +29,7 @@ class DashboardPage extends React.Component{
     }
     onStartTest = (id)=>{
         alert(id)
-        this.props.history.push(`/user/${id}/interview`)
+        this.props.history.push(`/user/${id}/test`)
     }
     render(){
         console.log(this.props.isAuthenticated)

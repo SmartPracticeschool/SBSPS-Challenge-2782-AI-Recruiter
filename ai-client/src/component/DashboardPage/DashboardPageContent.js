@@ -22,8 +22,10 @@ const DashboardPageContent = (props)=>{
                                 <p>{res.description}</p>
                             </div>
                             <div className="f-right update-btn">
-                                <button className="btn" onClick={()=>props.onStartTest(res._id)}>Start Test</button>
+                            <button className="btn" onClick={()=>props.onStartTest(res._id)}>Start Test</button>
+                               
                             </div>
+                            
                         </div>
                     </div>
                     <hr />

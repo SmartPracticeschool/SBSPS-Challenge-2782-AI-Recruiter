@@ -283,3 +283,15 @@ button:hover {
     width: 100%;
     height: 200px;
 }
+.q-input{
+    display: flex;
+    justify-content: space-between
+}
+.test-container{
+    position: relative;
+      top:200px;
+  }
+  .q-option{
+    height: 40px;
+      width:40px;
+  }

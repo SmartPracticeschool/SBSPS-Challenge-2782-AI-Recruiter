@@ -38,3 +38,11 @@ export const CompanyLoginApi = (data)=>{
 export const UserRegisterdApi = (id)=>{
     return axios.get(`/api/user/${id}/registered`)
 }
+export const UserStatusTestApi = (user_id, c_id)=>{
+
+    return axios.get(`/api/user/${user_id}/test/${c_id}/status`)
+}
+
+export const UserCompleteTestApi = (user_id, c_id)=>{
+    return axios.post('/api/user/test/score',{user_id,c_id})
+}
