@@ -18,6 +18,14 @@ const userSchema = new mongoose.Schema({
         },
         test_score:{
             type:Number
+        },
+        is_interview_completed:{
+            type: Boolean,
+            default: false
+        },
+        is_mcq_completed:{
+            type: Boolean,
+            default: false
         }
 
 })

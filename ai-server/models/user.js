@@ -31,10 +31,17 @@ const userSchema =  new mongoose.Schema({
             type:String,
             default:''
         },
-        company: [{
+        company: [
+            {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Company'
         }],
+        user_score:[
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref:'UserScore'
+            }
+        ],
         audio:{
             type:String,
             default:''

@@ -152,6 +152,10 @@ exports.UserCompanyTest = async (req, res, next)=>{
 
         let user = await db.User.findById(req.params.id)
         let company = await db.Company.findById(req.body.c_id)
+        let userScore = await db.UserScore.create({
+            company: company._id,
+            user: user._id
+        })
         console.log(user)
         console.log(company)
         console.log(company.user_apply.includes(user._id))
@@ -164,6 +168,7 @@ exports.UserCompanyTest = async (req, res, next)=>{
             })
         }else{
             await user.company.push(company._id);
+             await user.user_score.push(userScore._id)
              user.save()
             await company.user_apply.push(req.params.id);
            company.save()
