@@ -4,7 +4,7 @@ import { CompanyHomePageContent } from './CompanyHomePageContent';
 import { PageSpinner } from '../UserProfile/PageSpinner';
 import {connect} from 'react-redux'
 
-class CompanyHomePage extends Component{
+class CompanyHomePages extends Component{
 
     constructor(props){
         super(props)
@@ -46,6 +46,6 @@ function mapStateToProps(state){
     }
 }
 
-CompanyHomePage = connect(mapStateToProps, null)(CompanyHomePage)
+ const CompanyHomePage = connect(mapStateToProps, null)(CompanyHomePages)
 
 export {CompanyHomePage}
