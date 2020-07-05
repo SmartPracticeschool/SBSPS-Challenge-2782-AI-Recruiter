@@ -9,8 +9,10 @@ class InterviewTestPage extends React.Component{
     render(){
 
         const c_id = this.props.test._id
-        console.log(c_id)
-        if(this.props.isAuthenticated){
+        const user_id = this.props.match.params.user_id;
+        console.log(this.props.user.id)
+        
+        if(this.props.isAuthenticated && user_id === this.props.user.id){
         return(
             
             <InterviewTestContent

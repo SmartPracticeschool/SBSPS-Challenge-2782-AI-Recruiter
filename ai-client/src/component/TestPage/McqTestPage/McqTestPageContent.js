@@ -1,17 +1,24 @@
 import React from 'react';
 import { McqTestCard } from './McqTestCard';
-import { UserStatusTestApi, UserSubmitTestApi } from '../../_Api/User';
+import { UserStatusTestApi, UserSubmitTestApi, UserInterviewMailApi } from '../../_Api/User';
+import {withRouter} from 'react-router-dom'
 
-
-const McqTestPageContent = (props)=>{
+const McqTestPageContents = (props)=>{
 
     const SubmitTest = (score)=>{
 
         UserSubmitTestApi(props.userScore._id, score)
             .then(res=>{
                 console.log(res.data)
-                alert("submitted")
-                this.props.history.push('/user/dashboard')
+                UserInterviewMailApi(props.user._id)
+                    .then(res=>{
+                        alert('Intreview email link has been sent')
+                    }).catch(err=>{
+                        alert('something went wrong')
+                    })
+               
+
+                props.history.push('/user/dashboard')
             }).catch(err=>{
                 console.log(err)
             })
@@ -26,5 +33,7 @@ const McqTestPageContent = (props)=>{
         </div>
     )
 }
+
+const McqTestPageContent = withRouter(McqTestPageContents)
 
 export {McqTestPageContent}
