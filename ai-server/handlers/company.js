@@ -25,7 +25,7 @@ exports.CompanyRegister = async (req,res,next)=>{
               user.is_admin = true
               user.company = company._id
 
-              let {id, username , email} = user
+              let {id, username , email, is_admin} = user
               let token = jwt.sign({
                   id,
                   email,
@@ -38,7 +38,8 @@ exports.CompanyRegister = async (req,res,next)=>{
                  id,
                  email,
                  token,
-                 username
+                 username,
+                 is_admin
              })
           }catch(err){
               return next({

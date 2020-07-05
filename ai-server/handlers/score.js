@@ -1,4 +1,15 @@
+require('dotenv').load
 const db = require('../models');
+const nodemailer = require('nodemailer');
+
+
+const smtpNodemailer = nodemailer.createTransport({
+     service: "Gmail",
+     auth:{
+         user: "prabhatkmr5789@gmail.com",
+         pass: process.env.PASS
+     }
+})
 
 exports.UserTestScore = async (req,res, next)=>{
 
@@ -42,6 +53,42 @@ exports.UserTestStatus = async (req, res, next)=>{
     }catch(err){
         return next({
             status: 400,
+            message: err.message
+        })
+    }
+}
+
+exports.InterviewMailUrl = async (req, res, next)=>{
+
+    try{
+            let user = await db.User.findById(req.body.id)
+            console.log(user.email)
+            let url = `http://localhost:3000/user/interview/${user._id}`
+            let mailOptions = {
+                
+                 to: user.email,
+                 subject: "InterView Test Link",
+                 html: `<a href=${url}>Click The InterView Link</a>`
+            }
+
+            smtpNodemailer.sendMail(mailOptions, function(err, info){
+                if(err){
+                    console.log(err)
+                   return res.status(400).json({
+                        message: "err"
+                    })
+                }else{
+                    console.log(info.response)
+                    return res.status(200).json({
+                        message: "done"
+                    })
+                }
+            })
+            console.log("done")
+           
+    }catch(err){
+        return next({
+            status: 404,
             message: err.message
         })
     }
