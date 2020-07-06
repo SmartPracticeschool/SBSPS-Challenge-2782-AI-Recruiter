@@ -14,10 +14,20 @@ const userSchema = new mongoose.Schema({
         },
         interview_score:{
             type: String,
+            default:0
             
         },
         test_score:{
-            type:Number
+            type:Number,
+            default:0
+        },
+        resume_score:{
+            type: String,
+            default:0
+        },
+        speech_score:{
+            type: String,
+            default:0
         },
         is_interview_completed:{
             type: Boolean,
