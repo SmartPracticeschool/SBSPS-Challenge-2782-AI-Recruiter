@@ -31,7 +31,7 @@ class LoginPageContent extends React.Component{
                 <div className="col-lg-5 col-sm-12 p-5 card container ">
                     <div className="container w-75 card-body " >
                         <div className="text-center">
-                            <h2 style={{color:'blue'}}>Company Login</h2>
+                            <h2 style={{color:'blue'}}>Candidate Login</h2>
                         </div>
                             <form onSubmit={this.handleSubmit}>
                                

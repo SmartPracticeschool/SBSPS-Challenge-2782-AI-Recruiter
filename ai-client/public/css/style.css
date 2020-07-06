@@ -295,3 +295,16 @@ button:hover {
     height: 40px;
       width:40px;
   }
+
+  .footer{
+    height: 400px;
+    width: 100%;
+    padding: 100px;
+    background-color: #383e56;
+    font-family:\u5B8B\u4F53,serif;
+    box-shadow: 0px 0px 3px 0px #766a6a;
+    position: relative;
+    top:200px;
+
+
+}

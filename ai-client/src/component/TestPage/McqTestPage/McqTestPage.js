@@ -32,6 +32,7 @@ class McqTestPage extends React.Component{
                 <div>
                     {!this.state.data.is_mcq_completed && !this.state.data.is_interview_completed  ? (<McqTestPageContent 
                     userScore={this.state.data}
+                    user={this.props.user}
                     />):(null)}
                     {this.state.data.is_mcq_completed && !this.state.data.is_interview_completed ? (<InterviewStartPage 
                       userScore={this.state.data}

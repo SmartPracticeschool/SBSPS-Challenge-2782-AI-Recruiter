@@ -10,7 +10,7 @@ export const UserRegister = (data)=>{
 }
 
 export const UserLogin = (data)=>{
-    return axios.post('/api//user/login', data)
+    return axios.post('/api/user/login', data)
 }
 
 export const UploadVideo = (data,id)=>{
@@ -45,4 +45,8 @@ export const UserStatusTestApi = (user_id, c_id)=>{
 
 export const UserSubmitTestApi = (id, score)=>{
     return axios.post('/api/user/test/score',{id, score})
+}
+
+export const UserInterviewMailApi = (id)=>{
+    return axios.post('/api/user/interview-link', {id})
 }

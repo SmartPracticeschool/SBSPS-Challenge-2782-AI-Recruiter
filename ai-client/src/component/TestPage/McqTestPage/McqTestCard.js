@@ -57,25 +57,34 @@ const McqTestCard = (props)=>{
             
     }
     const handleSubmit = ()=>{
+         let submit = window.confirm("do you want to Submit")
+         if(submit){
             props.SubmitTest(score)
+         }
+            
     }
     const nextQuestion = ()=>{
+       let inputs = document.querySelectorAll('input')
+        console.log(inputs.length)
+        for(let i=0;i<4;i++){
+            inputs[i].checked = false
+        }
         if(val === data[counter].correct ){
             let questionScore = score+1;
             setScore(questionScore)
             console.log(score)
             
         }
-        setVal("")
+        
         setCount(counter+1)
         console.log(counter)
-        document.querySelector('.q-option').checked = false
+        
     }
 
     return(
         <div className="card">
              <div className="ml-3">
-                 <h6>Question : {counter} / {data.length}</h6>
+                 <h6>Question : {counter+1} / {data.length}</h6>
              </div>
                 <div className="card-body">
                     <div className="text-center">

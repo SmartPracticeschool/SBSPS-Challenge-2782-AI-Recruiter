@@ -16,31 +16,51 @@ import { Test } from '../component/test';
 import { LoginPage } from '../component/LoginPage/LoginPage';
 import { DashboardPage } from '../component/DashboardPage/DashboardPage';
 import { McqTestPage } from '../component/TestPage/McqTestPage/McqTestPage';
+import {connect} from 'react-redux'
 
-const RouterContent = (props)=>{
+const RouterContents = (props)=>{
 
 
     return(
         <Router history={history}>
             <Switch>
-                <Route exact path="/" component={Homepage} />
+            <Route exact path="/" component={Homepage} />
+            <Route exact path="/company" component={CompanyHomePage} />
+
+                {props.admin.is_admin ? (
+                    <>
+                    <Route exact path="/company/upload/question" component={CompanyQuestionPage} />
+                <Route exact path="/user/:id/test" component={McqTestPage} />
+                <Route exact path="/company/register" component={CompanyRegisterPage} />
+                <Route exact path="/company/login" component={CompanyLoginPage} />
+                </>
+                ):(
+                    <>
                 <Route exact path="/register" component={RegisterPage} />
                 <Route exact path='/profile' component={UserProfilePage} />
                 <Route exact path="/login" component={LoginPage} />
                 {/* <Route exact path='/test' component={WebCamPage} /> */}
-                
+                <Route exact path="/company/login" component={CompanyLoginPage} />
+
                 <Route exact path='/user/dashboard' component={DashboardPage} />
                 <Route exact path="/company/register" component={CompanyRegisterPage} />
-                <Route exact path="/company/login" component={CompanyLoginPage} />
-                <Route exact path="/company/upload/question" component={CompanyQuestionPage} />
+                
                 <Route exact path="/user/:id/test" component={McqTestPage} />
-                <Route exact path="/user/interview" component={InterviewTestPage} />
-                <Route exact path="/company" component={CompanyHomePage} />
+                <Route exact path="/user/interview/:user_id" component={InterviewTestPage} />
                 <Route exact path="/test" component={McqTestPage} />
+                    </>
 
+                )}
             </Switch>
         </Router>
     )
 }
 
+function mapStateToProps(state){
+    return{
+        admin: state.user.user
+    }
+}
+
+const RouterContent = connect(mapStateToProps,null)(RouterContents)
 export {RouterContent}
