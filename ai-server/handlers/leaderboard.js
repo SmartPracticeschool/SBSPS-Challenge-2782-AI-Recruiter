@@ -8,7 +8,15 @@ exports.AplliedCandidate = async (req, res, next)=>{
                                     .execPopulate(function(err, result){
                                         console.log(err)
                                         console.log(result)
-                                        res.send(result.user_apply)
+                                        let data = []
+                                        result.user_apply.map(response=>{
+                                            data.push({
+                                                email: response.email,
+                                                username: response.username,
+                                                id: response._id
+                                            })
+                                        })
+                                        res.send(data)
                                     })
          
     }catch(err){
