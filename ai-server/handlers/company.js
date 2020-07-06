@@ -26,6 +26,7 @@ exports.CompanyRegister = async (req,res,next)=>{
               user.company = company._id
 
               let {id, username , email, is_admin} = user
+              let company_id = company._id
               let token = jwt.sign({
                   id,
                   email,
@@ -39,7 +40,8 @@ exports.CompanyRegister = async (req,res,next)=>{
                  email,
                  token,
                  username,
-                 is_admin
+                 is_admin,
+                 company_id
              })
           }catch(err){
               return next({
@@ -56,6 +58,8 @@ exports.CompanyLogin =  async (req,res ,next)=>{
                     if(user && user.is_admin){
                         let isMatch = await user.Compare(req.body.password)
                         let {id, username, email, is_admin} = user
+                        let company = await db.Company.findOne({company_user:id})
+                        let company_id = company._id;
                         if(isMatch){
                             let token = jwt.sign({
                                 username,
@@ -69,7 +73,8 @@ exports.CompanyLogin =  async (req,res ,next)=>{
                                 email,
                                 token,
                                 id,
-                                is_admin
+                                is_admin,
+                                company_id
 
                             })
                         }
@@ -212,3 +217,4 @@ exports.UserRegisteredCompany = async (req,res, next)=>{
         })
     }
 }
+
