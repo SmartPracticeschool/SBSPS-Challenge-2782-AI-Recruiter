@@ -47,6 +47,6 @@ export const UserSubmitTestApi = (id, score)=>{
     return axios.post('/api/user/test/score',{id, score})
 }
 
-export const UserInterviewMailApi = (id)=>{
-    return axios.post('/api/user/interview-link', {id})
+export const UserInterviewMailApi = (id, c_id)=>{
+    return axios.post('/api/user/interview-link', {id, c_id})
 }

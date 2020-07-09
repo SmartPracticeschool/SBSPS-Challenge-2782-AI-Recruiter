@@ -8,7 +8,7 @@ class InterviewTestPage extends React.Component{
 
     render(){
 
-        const c_id = this.props.test._id
+        const c_id = this.props.match.params.c_id
         const user_id = this.props.match.params.user_id;
         console.log(this.props.user.id)
         

@@ -308,3 +308,44 @@ button:hover {
 
 
 }
+.candidate-list{
+
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+    top: 100px;
+    background-color: #e4e3e3;
+    height: 100px;
+}
+.u-icon{
+    text-shadow: 2px 2px 4px #000000;
+    color: lightblue;
+    font-size: 50px;
+}
+.l-icon{
+    text-shadow: 2px 2px 4px #000000;
+    color: white;
+    font-size: 20px;
+}
+
+.user-text{
+    font-size:20px;
+font-family:\u5FAE\u8F6F\u96C5\u9ED1,\u9ED1\u4F53,sans-serif;
+color:rgb(90, 90, 115);
+font-weight: bold;
+}
+.s-btn{
+    position: relative;
+    bottom: 0px;
+    display: flex;
+    justify-content: space-between;
+    top:20px;
+}
+.s-btn button{
+    font-weight: bold;
+    font-size: 20px;
+}
+.s-btn button:hover{
+    background-color: white;
+    color: blue
+}

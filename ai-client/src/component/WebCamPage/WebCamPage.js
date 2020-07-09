@@ -17,9 +17,9 @@ const WebCamPages = (props)=>{
      let webRef = React.useRef()
      let audioRecorder = null
 
-    // React.useEffect(()=>{
-    //     CheckStartVideo()
-    // },[])
+    React.useEffect(()=>{
+        CheckStartVideo()
+    },[])
      const CheckStartVideo = ()=>{
          if(window.confirm('Start Recording')){
              CaptureVideo()
@@ -83,12 +83,14 @@ const WebCamPages = (props)=>{
                 let audioProcess = new FormData()
                 videoProcess.append('video', blobVideo)
                 audioProcess.append('audio', blobAudio)
-                UploadVideo(videoProcess, props.user.id)
+                UploadVideo(videoProcess, props.user.id, props.test_id)
                    .then(res=>{
-                       UploadAudio(audioProcess, props.user.id)
-                            .then(res=>console.log(res.data))
+                       UploadAudio(audioProcess, props.user.id, props.test_id)
+                            .then(res=>{console.log(res.data)
+                               window.close()
+                            })
                             .catch(err=>console.log(err))
-                      props.history.push('/')
+                      
                    })
                    .catch(err=>{console.log(err)})
                

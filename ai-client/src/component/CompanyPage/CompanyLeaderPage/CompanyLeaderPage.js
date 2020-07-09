@@ -1,6 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux'
 import { UserCompanyAppliedList } from '../../_Api/Company';
+import { CompanyLeaderContent } from './CompanyLeaderContent';
+import { PageSpinner } from '../../UserProfile/PageSpinner';
 
 
 class CompanyLeaderPage extends React.Component{
@@ -20,10 +22,22 @@ class CompanyLeaderPage extends React.Component{
                     console.log(res.data)
                 }).catch(err=>console.log(err))
     }
+    OpenCandidate = (id)=>{
+            this.props.history.push(`/candidate/profile/${id}`)
+    }
 
     render(){
         return(
-            
+            <div>
+                {this.state.data ? (
+                    <CompanyLeaderContent
+                        data={this.state.data}
+                        OpenCandidate={this.OpenCandidate}
+                    />
+                ):(
+                    <PageSpinner />
+                )}
+            </div>
         )
     }
 }

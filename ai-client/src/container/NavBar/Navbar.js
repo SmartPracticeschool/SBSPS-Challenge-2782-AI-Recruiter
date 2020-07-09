@@ -19,6 +19,7 @@ const NavBars = (props)=>{
                                  <div className="flex ">
                                  <div className=""><a href="/company/upload/question">Upload Question</a></div>
                                  <div className="ml-5"><a href="/company">Company</a></div>
+                                 <div className="ml-5"><a href="/company/leaderboard">Candidate</a></div>
                                  
      
                              </div>

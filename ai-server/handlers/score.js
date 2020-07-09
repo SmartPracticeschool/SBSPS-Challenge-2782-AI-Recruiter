@@ -61,12 +61,13 @@ exports.UserTestStatus = async (req, res, next)=>{
 exports.InterviewMailUrl = async (req, res, next)=>{
 
     try{
+        console.log(req.body)
             let user = await db.User.findById(req.body.id)
-            console.log(user.email)
-            let url = `http://localhost:3000/user/interview/${user._id}`
+            console.log(req.body)
+            let url = `http://localhost:3000/user/interview/${user._id}/${req.body.c_id}`
             let mailOptions = {
                 
-                 to: user.email,
+                 to: 'prabhatku304@gmail.com',
                  subject: "InterView Test Link",
                  html: `<a href=${url}>Click The InterView Link</a>`
             }
@@ -100,6 +101,8 @@ exports.CandidateSelectionStatus = async (req,res,next)=>{
                         $and:[{user:req.body.user_id},{company: req.body.c_id}]
                     })
         if(userScore){
+            userScore.is_selected = req.body.status
+            await userScore.save()
             let user = await db.User.findById(req.body.user_id)
             let text = ""
             if(req.body.status){
@@ -110,7 +113,7 @@ exports.CandidateSelectionStatus = async (req,res,next)=>{
             let mailOption = {
                 to: user.email,
                 subject: "Company Selection Status",
-                test
+                html: text
             }
 
             smtpNodemailer.sendMail(mailOption, function(srr, info){
