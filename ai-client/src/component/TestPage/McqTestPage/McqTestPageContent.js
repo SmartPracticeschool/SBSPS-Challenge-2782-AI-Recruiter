@@ -9,8 +9,8 @@ const McqTestPageContents = (props)=>{
 
         UserSubmitTestApi(props.userScore._id, score)
             .then(res=>{
-                console.log(res.data)
-                UserInterviewMailApi(props.user._id)
+                alert(props.userScore.company)
+                UserInterviewMailApi(props.user.id, props.userScore.company)
                     .then(res=>{
                         alert('Intreview email link has been sent')
                     }).catch(err=>{

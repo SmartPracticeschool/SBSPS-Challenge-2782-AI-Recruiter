@@ -17,6 +17,8 @@ import { LoginPage } from '../component/LoginPage/LoginPage';
 import { DashboardPage } from '../component/DashboardPage/DashboardPage';
 import { McqTestPage } from '../component/TestPage/McqTestPage/McqTestPage';
 import {connect} from 'react-redux'
+import { CompanyLeaderPage } from '../component/CompanyPage/CompanyLeaderPage/CompanyLeaderPage';
+import { CandidateScorePage } from '../component/CompanyPage/CandidateScorePage/CandidateScorePage';
 
 const RouterContents = (props)=>{
 
@@ -26,6 +28,7 @@ const RouterContents = (props)=>{
             <Switch>
             <Route exact path="/" component={Homepage} />
             <Route exact path="/company" component={CompanyHomePage} />
+            <Route exact path="/test" component={CandidateScorePage} />
 
                 {props.admin.is_admin ? (
                     <>
@@ -33,6 +36,8 @@ const RouterContents = (props)=>{
                 <Route exact path="/user/:id/test" component={McqTestPage} />
                 <Route exact path="/company/register" component={CompanyRegisterPage} />
                 <Route exact path="/company/login" component={CompanyLoginPage} />
+                <Route exact path="/company/leaderboard" component={CompanyLeaderPage} />
+                <Route exact path="/candidate/profile/:id" component={CandidateScorePage} />
                 </>
                 ):(
                     <>
@@ -46,8 +51,8 @@ const RouterContents = (props)=>{
                 <Route exact path="/company/register" component={CompanyRegisterPage} />
                 
                 <Route exact path="/user/:id/test" component={McqTestPage} />
-                <Route exact path="/user/interview/:user_id" component={InterviewTestPage} />
-                <Route exact path="/test" component={McqTestPage} />
+                <Route exact path="/user/interview/:user_id/:c_id" component={InterviewTestPage} />
+                
                     </>
 
                 )}

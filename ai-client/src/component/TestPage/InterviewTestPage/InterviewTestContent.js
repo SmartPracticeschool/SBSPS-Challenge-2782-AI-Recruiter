@@ -12,7 +12,9 @@ const InterviewTestContent = (props)=>{
                     <div className="col-lg-4 col-md-6 col-sm-12">
                         <div className="">
                             <div className="">
-                                <WebCamPage />
+                                <WebCamPage 
+                                 test_id = {props.test_id}
+                                />
                             </div>
                         </div>
 

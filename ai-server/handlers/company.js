@@ -30,7 +30,9 @@ exports.CompanyRegister = async (req,res,next)=>{
               let token = jwt.sign({
                   id,
                   email,
-                  username
+                  username,
+                  company_id,
+                  is_admin
               }, process.env.SECRET_KEY)
               console.log(token)
              await user.save()
@@ -60,12 +62,14 @@ exports.CompanyLogin =  async (req,res ,next)=>{
                         let {id, username, email, is_admin} = user
                         let company = await db.Company.findOne({company_user:id})
                         let company_id = company._id;
+                        console.log(company)
                         if(isMatch){
                             let token = jwt.sign({
                                 username,
                                 email,
                                 id,
-                                is_admin
+                                is_admin,
+                                company_id
                                 
                             },process.env.SECRET_KEY)
                             return res.status(200).json({

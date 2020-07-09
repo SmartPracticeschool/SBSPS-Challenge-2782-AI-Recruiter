@@ -3,11 +3,13 @@ const db = require('../models');
 const router = express.Router();
 const {CompanyLogin, CompanyRegister, UploadQuestion} = require('../handlers/company')
 const {AplliedCandidate} = require('../handlers/leaderboard');
+const {CandidateSelectionStatus} = require('../handlers/score')
 
 router.post('/company/register', CompanyRegister)
 router.post('/company/login', CompanyLogin);
 router.post('/company/:id/question/upload', UploadQuestion )
 router.get('/company/user/applied-list/:c_id', AplliedCandidate )
+router.post('/company/candidate/selection', CandidateSelectionStatus)
 router.get('/company' , async (req,res, next)=>{
     try{
         let company = await db.Company.find({})

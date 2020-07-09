@@ -61,12 +61,13 @@ exports.UserTestStatus = async (req, res, next)=>{
 exports.InterviewMailUrl = async (req, res, next)=>{
 
     try{
+        console.log(req.body)
             let user = await db.User.findById(req.body.id)
-            console.log(user.email)
-            let url = `http://localhost:3000/user/interview/${user._id}`
+            console.log(req.body)
+            let url = `http://localhost:3000/user/interview/${user._id}/${req.body.c_id}`
             let mailOptions = {
                 
-                 to: user.email,
+                 to: 'prabhatku304@gmail.com',
                  subject: "InterView Test Link",
                  html: `<a href=${url}>Click The InterView Link</a>`
             }
@@ -86,6 +87,54 @@ exports.InterviewMailUrl = async (req, res, next)=>{
             })
             console.log("done")
            
+    }catch(err){
+        return next({
+            status: 404,
+            message: err.message
+        })
+    }
+}
+
+exports.CandidateSelectionStatus = async (req,res,next)=>{
+    try{
+        let userScore = await db.UserScore.findOne({
+                        $and:[{user:req.body.user_id},{company: req.body.c_id}]
+                    })
+        if(userScore){
+            userScore.is_selected = req.body.status
+            await userScore.save()
+            let user = await db.User.findById(req.body.user_id)
+            let text = ""
+            if(req.body.status){
+                text = "You have selected For HR Interview further Info will be sent"
+            }else{
+                text = "Thank You for applying You have not selected"
+            }
+            let mailOption = {
+                to: user.email,
+                subject: "Company Selection Status",
+                html: text
+            }
+
+            smtpNodemailer.sendMail(mailOption, function(srr, info){
+                if(err){
+                    console.log(err)
+                   return res.status(400).json({
+                        message: "err"
+                    })
+                }else{
+                    console.log(info.response)
+                    return res.status(200).json({
+                        message: "done"
+                    })
+                }
+            })
+        }else{
+            return next({
+                status: 404,
+                message: "userscore does not exist"
+            })
+        }
     }catch(err){
         return next({
             status: 404,

@@ -5,7 +5,8 @@ const testShema = new mongoose.Schema({
             interview:[{
                 question: String,
                 answer: String,
-                score: Number
+                score: Number,
+                time: Number
             }],
             mcq:[{
                 question: String,

@@ -1,6 +1,7 @@
 require('dotenv').load
 const db = require('../models')
 const jwt = require('jsonwebtoken')
+const {spawn} = require('child_process')
 
 exports.UserRegister = async (req,res,next)=>{
 
@@ -84,10 +85,26 @@ exports.UserProfile = async (req,res, next)=>{
                 userProfile.email = req.body.email;
                 userProfile.college = req.body.college
                 userProfile.contact = req.body.contact
-                console.log(req.body)
-                await userProfile.save();
-
-                res.send(userProfile)
+                if(req.body.skills || req.body.experience){
+                    let process =  await spawn('python', ['ml/Resume_analyser/analyser.py' , userProfile.skills, userProfile.experience])
+                    process.stdout.on('data', function(data){
+                        console.log(data.toString())
+                        userProfile.score = data.toString()
+                        userProfile.save();
+    
+                        res.send(userProfile)
+                    })
+                    process.stderr.on('data', function(data){
+                        console.log(data.toString())
+                    })
+                }else{
+                    userProfile.save();
+    
+                    res.send(userProfile)
+                }
+               
+               
+                
             }catch(err){
                 return next({
                     status: 404,
@@ -118,3 +135,4 @@ exports.UserProfileRequest = async (req,res,next)=>{
                 })
             }
 }
+
