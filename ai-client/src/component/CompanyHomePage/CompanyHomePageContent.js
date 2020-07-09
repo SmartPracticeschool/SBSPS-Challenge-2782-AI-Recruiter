@@ -30,7 +30,9 @@ const CompanyHomePageContent = (props)=>{
                 </div>
                 <div className="container">
                     <div className="">
-                        <CompanyCard data={props.data} onApply = {onApply} />
+                        <CompanyCard data={props.data} onApply = {onApply}
+                        userRegisteredCompany={props.userRegisteredCompany}
+                        />
                     </div>
                     
                 </div>

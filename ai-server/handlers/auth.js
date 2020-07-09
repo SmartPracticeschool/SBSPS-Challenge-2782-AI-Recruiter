@@ -73,6 +73,26 @@ exports.UserLogin =  async (req,res ,next)=>{
                 }
 }
 
+exports.UserData = async (req,res,next)=>{
+
+    try{
+        let user = await db.User.findById(req.params.id)
+        if(user){
+            res.send(user.company)
+        }else{
+            return next({
+                status: 404,
+                message: 'user does not found'
+            })
+        }
+    }catch(err){
+        return next({
+            status: 404,
+            message: err.message
+        })
+    }
+}
+
 
 exports.UserProfile = async (req,res, next)=>{
 

@@ -1,7 +1,7 @@
 const express =  require('express'),
         router  = express.Router(),
         db = require('../models'),
-        {UserLogin, UserRegister, UserProfile, UserProfileRequest} = require('../handlers/auth'),
+        {UserLogin, UserRegister, UserProfile, UserProfileRequest, UserData} = require('../handlers/auth'),
         {UserRegisteredCompany} = require('../handlers/company'),
         {UserTestScore, UserTestStatus} = require('../handlers/score')
 
@@ -19,6 +19,7 @@ router.get('/user', async (req,res,next)=>{
        }
 })
 
+router.get('/user/:id', UserData)
 router.get('/user/:user_id/test/:c_id/status', UserTestStatus)
 router.post('/user/test/score', UserTestScore)
 

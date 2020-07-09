@@ -1,7 +1,15 @@
 import React from 'react';
 
 
+
 const CompanyCard = (props)=>{
+    const IsUserRegistered = (c_id)=>{
+        console.log(c_id)
+        if(props.userRegisteredCompany.includes(c_id)){
+            return true
+        }
+        return false
+    }
 
     return(
         <div className="company-list">
@@ -18,10 +26,15 @@ const CompanyCard = (props)=>{
                             <div className="description">
                                 <p>{res.description}</p>
                             </div>
-                            {/* <p>{res._id}</p> */}
-                            <div className="apply-btn">
-                                <button className="btn" onClick={()=>{props.onApply(res._id)}}>Apply</button>
-                            </div>
+                            
+                            
+                            {IsUserRegistered(res._id) ? ( <div className="w-50" style={{backgroundColor: 'blue'}}>
+                                <button className="btn btn-primary" disabled={true} >Registered</button>
+                            </div>):(
+                                 <div className="apply-btn">
+                                 <button className="btn" onClick={()=>{props.onApply(res._id)}}>Apply</button>
+                             </div>
+                            )}
                         </div>
                     </div>
 
