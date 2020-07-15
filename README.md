@@ -50,3 +50,5 @@ For the resume parser we used our own annotated our own set of resumes to train 
 pyresparser model.For resume strength analysis we used google word2vec model. The
 facial expression model was trained on Movie face expressions dataset and speech
 analyser on movie dialogues dataset.
+# Video Demonstration Link :-
+https://www.youtube.com/watch?v=nZn7aBoCldg
