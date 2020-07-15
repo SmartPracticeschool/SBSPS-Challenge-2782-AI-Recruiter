@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 mongoose.set('debug', true)
 mongoose.Promise = Promise;
 
-mongoose.connect('mongodb://localhost/ai-recruiter',{    useNewUrlParser: true,
+mongoose.connect('mongodb://localhost/airecruiter',{    useNewUrlParser: true,
 
 useUnifiedTopology: true,})
 

@@ -2,6 +2,7 @@
 const db = require('../models')
 const ResumeParser = require('resume-parser')
 const _ = require('lodash')
+const { spawn } = require('child_process')
 
 exports.ResumeUpload = async (req,res,next)=>{
 
@@ -62,12 +63,14 @@ exports.VideoUpload = async (req,res, next)=>{
                 try{
                          let user = await db.User.findById(req.params.id)
                          if(user){
+                             
                              let url = ''
                              if(req.hostname == 'localhost'){
                                  url = req.protocol + '://' + req.hostname + ':5000/' + req.file.filename
                              }else{
                                  url = req.protocol + '://' + req.hostname + '/' + req.file.filename
                              }
+                            //  let childProcess = await spawn('python', ['ml/facial/predict_expression.py', ])
                              user.video = url;
                              await user.save()
                              res.send(url)
