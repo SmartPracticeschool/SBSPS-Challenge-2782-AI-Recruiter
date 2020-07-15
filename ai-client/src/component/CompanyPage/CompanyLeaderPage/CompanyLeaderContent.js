@@ -20,6 +20,7 @@ const CompanyLeaderContent = (props)=>{
                     <div className="text-center">
                         <div className="text-center p-3 " style={{cursor: 'pointer'}} onClick={()=>props.OpenCandidate(res.id)}><i className="fa fa-share-square u-icon" ></i></div>
                     </div>
+                    <hr />
                 </>
             ))}
         </div>

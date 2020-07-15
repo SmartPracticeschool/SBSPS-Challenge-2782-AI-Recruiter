@@ -13,6 +13,9 @@ const NavBars = (props)=>{
     return(
         <nav>
             <div className='content'>
+            <div className="p-2" style={{backgroundColor:'white'}}><a href="/">
+                <img style={{height:40, width:300}} src="./image/logo.png" alt="" className="" />
+                </a></div>
                 {props.user.isAuthenticated ? (
                     <div className="text-center nav-content">
                         {props.user.user.is_admin ? (
@@ -25,10 +28,10 @@ const NavBars = (props)=>{
                              </div>
                         ):(
                         <div className="flex ">
-                            <div className=""><a href="/profile">profile</a></div>
+                            <div className="" ><a href="/profile">profile</a></div>
                             <div className="ml-5"><a href="/company">Company</a></div>
                             <div className="ml-5"><a href="/user/dashboard">Dashboard</a></div>
-                            <div className="ml-5"><a href="/">Test</a></div>
+                            <div className="ml-5"><a href="/register">Resume</a></div>
 
                         </div>
                         )}
@@ -36,7 +39,7 @@ const NavBars = (props)=>{
                     <div className="ml-5"><a href="#" onClick={Logout} >Logout</a></div>
                     </div>
             ): (<>
-                <div className="p-2"><a href="/">Home</a></div>
+               
                 <div className="drop">
                 <div className="company">
                     <div className="drop-down">

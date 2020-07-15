@@ -16,66 +16,79 @@ const WebCamPages = (props)=>{
      let recorder = null
      let webRef = React.useRef()
      let audioRecorder = null
+     const [src, setSrc] = React.useState(null)
 
     React.useEffect(()=>{
         CheckStartVideo()
+    
     },[])
      const CheckStartVideo = ()=>{
          if(window.confirm('Start Recording')){
+             if(!hasGetUserMedia()){
+                alert("Your browser cannot stream from your webcam. Please switch to Chrome or Firefox.")
+                return
+             }
+             console.log('hello')
              CaptureVideo()
-             CaptureAudio()
+             
          }else{
              props.history.push('/')
            
          }
      }
+     const  hasGetUserMedia = ()=> {
+        return !!(navigator.getUserMedia || navigator.webkitGetUserMedia ||
+                      navigator.mozGetUserMedia || navigator.msGetUserMedia);
+      }
      const CaptureVideo =()=>{
-            navigator.mediaDevices.getUserMedia({
+         
+            navigator.getUserMedia({
                 video: true,
+                audio:false
                 
                 
-            }).then(async function(stream){
-                
-                 recorder = RecordRTC(stream, {
-                    type: 'video',
-                    canvas: {
-                        width: 440,
-                        height: 340
-                    },
-                })
-                recorder.stream = stream
-                
-               
+            }, (stream)=>{
+                recorder = RecordRTC(stream, {
+                            type: 'video/mp4',
+                            canvas: {
+                                width: 440,
+                                height: 340
+                            },
+                        })
                 recorder.startRecording()
-                console.log(recorder)
-
+                CaptureAudio()
+            } , err=>{
+                console.log(err)
+          
 
             })
      }
 
      const CaptureAudio = ()=>{
-        navigator.mediaDevices.getUserMedia({
+        navigator.getUserMedia({
               audio: true
-        }).then((stream)=>{
+        },(stream)=>{
             audioRecorder = RecordRTC(stream, {
-                type: 'audio'
+                type: 'audio/wav',
+                recorderType: RecordRTC.StereoAudioRecorder
             })
 
-            audioRecorder.stream =stream;
+           
             audioRecorder.startRecording()
-            
-
+        }, err=>{
+            console.log(err)
         })
   }
      const UploadRecording = ()=>{
          recorder.stopRecording(()=>{
+
              audioRecorder.stopRecording(()=>{
                 let blobVideo = recorder.getBlob();
                 let blobAudio = audioRecorder.getBlob();
-   
+                console.log(blobAudio)
                 
-                recorder.stream.stop()
-                audioRecorder.stream.stop()
+                // recorder.stream.stop()
+                // audioRecorder.stream.stop()
                 let url = URL.createObjectURL(blobVideo)
                 let url2 = URL.createObjectURL(blobAudio)
                 console.log(url, url2)
@@ -101,10 +114,11 @@ const WebCamPages = (props)=>{
 
    
     return(
-        < div className="webcam">
+        <div className="webcam">
         <WebCam
         videoConstraints={videoStyle}
         />
+       
         <div className="container">
             <div className="text-center mt-5">
                 <div className="title">

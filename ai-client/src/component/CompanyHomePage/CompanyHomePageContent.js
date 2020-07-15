@@ -2,12 +2,19 @@ import React,{Component} from "react";
 import { CompanyCard } from "./CompanyCard";
 import Typist from 'react-typist'
 import { UserCompanyTestApi } from "../_Api/Company";
+import { PageSpinner } from "../UserProfile/PageSpinner";
+import {withRouter} from 'react-router-dom';
 
-const CompanyHomePageContent = (props)=>{
+const CompanyHomePageContents = (props)=>{
+    const [isLoad, setLoad] = React.useState(false);
 
     const onApply = (id)=>{
+        setLoad(true)
         UserCompanyTestApi(props.user.id, id)
-            .then(res=>console.log(res.data))
+            .then(res=>{
+                setLoad(false)
+                props.history.push('/user/dashboard')
+            })
             .catch(err=>console.log(err))
     }
     return(
@@ -30,7 +37,12 @@ const CompanyHomePageContent = (props)=>{
                 </div>
                 <div className="container">
                     <div className="">
-                        <CompanyCard data={props.data} onApply = {onApply} />
+                        {isLoad ? (<PageSpinner />):(
+                             <CompanyCard data={props.data} onApply = {onApply}
+                             userRegisteredCompany={props.userRegisteredCompany}
+                             />
+                        )}
+                       
                     </div>
                     
                 </div>
@@ -40,4 +52,5 @@ const CompanyHomePageContent = (props)=>{
     )
 }
 
+const CompanyHomePageContent = withRouter(CompanyHomePageContents)
 export {CompanyHomePageContent}

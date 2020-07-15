@@ -30,18 +30,22 @@ class McqTestPage extends React.Component{
          if(this.state.data){
             return(
                 <div>
-                    {/* {!this.state.data.is_mcq_completed && !this.state.data.is_interview_completed  ? (<McqTestPageContent 
+                    {!this.state.data.is_mcq_completed  ? (<McqTestPageContent 
                     userScore={this.state.data}
                     user={this.props.user}
                     />):(null)}
-                    {this.state.data.is_mcq_completed && !this.state.data.is_interview_completed ? (<InterviewStartPage 
-                      userScore={this.state.data}
-                    />):(null) }
-                    {this.state.data.is_mcq_completed && this.state.data.is_interview_completed ? (<div>Test completed</div>):(null)} */}
-                    <McqTestPageContent 
+                   {this.state.data.is_mcq_completed && !this.state.data.is_interview_completed ? (
+                   <div className="text-center p-5">
+                   <h4 style={{color: "blue", fontWeight:"bold"}}>
+                       InterView Test are not completed
+                   </h4>
+                   </div>
+                   ):(null)}
+                    {this.state.data.is_mcq_completed && this.state.data.is_interview_completed ? (<div>Test completed</div>):(null)}
+                    {/* <McqTestPageContent 
                     userScore={this.state.data}
                     user={this.props.user}
-                    />
+                    /> */}
                 </div>
                
             )
