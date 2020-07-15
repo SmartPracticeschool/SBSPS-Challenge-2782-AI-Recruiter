@@ -19,6 +19,7 @@ import { McqTestPage } from '../component/TestPage/McqTestPage/McqTestPage';
 import {connect} from 'react-redux'
 import { CompanyLeaderPage } from '../component/CompanyPage/CompanyLeaderPage/CompanyLeaderPage';
 import { CandidateScorePage } from '../component/CompanyPage/CandidateScorePage/CandidateScorePage';
+import { PageSpinner } from '../component/UserProfile/PageSpinner';
 
 const RouterContents = (props)=>{
 
@@ -28,7 +29,7 @@ const RouterContents = (props)=>{
             <Switch>
             <Route exact path="/" component={Homepage} />
             <Route exact path="/company" component={CompanyHomePage} />
-            <Route exact path="/test" component={CandidateScorePage} />
+            <Route exact path="/test" component={PageSpinner} />
 
                 {props.admin.is_admin ? (
                     <>

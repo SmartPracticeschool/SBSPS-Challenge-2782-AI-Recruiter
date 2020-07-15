@@ -31,7 +31,7 @@ class CompanyHomePages extends Component{
 
 
     render(){
-        if(this.state.isLoad && this.props.user){
+        if(this.state.data && this.state.company && this.props.user){
         return(
             <CompanyHomePageContent 
                 data = {this.state.data}

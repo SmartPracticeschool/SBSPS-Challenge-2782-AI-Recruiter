@@ -47,6 +47,7 @@ class RegisterForm extends React.Component {
                                          this.setState({username:e.target.value})
                                         }}
                                      className='form-control'
+                                     placeholder='username'
                                     />
                                     <label className="text-error">{errors.name}</label>
                                 </div>
@@ -60,6 +61,7 @@ class RegisterForm extends React.Component {
                                          this.setState({email:e.target.value})
                                         }}
                                      className='form-control'
+                                     placeholder="email"
                                     />
                                     <label className="text-error">{errors.name}</label>
                                 </div>
@@ -73,19 +75,11 @@ class RegisterForm extends React.Component {
                                          this.setState({password:e.target.value})
                                         }}
                                      className='form-control'
+                                     placeholder="password"
                                     />
                                     <label className="text-error">{errors.name}</label>
                                 </div>
-                                {/* <div className="form-group">
-                                    <input
-                                     type="file"
-                                     name="file"
-                                     onChange={this.handleFile}
-                                     className='form-control'
-                                     encType="multipart/form-data"
-                                    />
-
-                                </div> */}
+                              
                                 <div>
                                     <button className="btn btn-primary" type="submit">Register</button>
                                 </div>
@@ -95,7 +89,10 @@ class RegisterForm extends React.Component {
                 </div>
                 <div className="col-lg-5 col-sm-12 text-center">
                     <div className="title">
-                        <h3> Welcome to Our Register Portal</h3>
+                        <h3> Welcome to Our Candidate Registeration</h3>
+                    </div>
+                    <div className="container p-5 mt-5" style={{overflow:'hidden'}}>
+                        <img style={{height:400, width:500}} src="./image/register.png" alt="" className="fluid-img"/>
                     </div>
 
                 </div>
