@@ -39,5 +39,11 @@ router.delete('/user/:id/delete', async (req,res,next)=>{
         }
 })
 
+// router.get('/testing', async (req,res, next)=>{
+//     try{
+
+//     }
+// })
+
 
 module.exports = router
