@@ -59,7 +59,7 @@ exports.InterviewMailUrl = async (req, res, next)=>{
             let url = `http://localhost:3000/user/interview/${user._id}/${req.body.c_id}`
             let mailOptions = {
                 
-                 to: 'prabhatku304@gmail.com',
+                 to: user.email,
                  subject: "InterView Test Link",
                  html: `<a href=${url}>Click The InterView Link</a>`
             }
