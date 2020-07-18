@@ -3,14 +3,6 @@ const db = require('../models');
 const nodemailer = require('nodemailer');
 
 
-const smtpNodemailer = nodemailer.createTransport({
-     service: "Gmail",
-     auth:{
-         user: "prabhatkmr5789@gmail.com",
-         pass: process.env.PASS
-     }
-})
-
 exports.UserTestScore = async (req,res, next)=>{
 
     try{
