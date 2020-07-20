@@ -64,11 +64,5 @@ const RouterContents = (props)=>{
     )
 }
 
-function mapStateToProps(state){
-    return{
-        admin: state.user.user
-    }
-}
-
-const RouterContent = connect(mapStateToProps,null)(RouterContents)
+const RouterContent = RouterContents
 export {RouterContent}
