@@ -27,12 +27,14 @@ const RouterContents = (props)=>{
     return(
         <Router history={history}>
             <Switch>
+        <PageSpinner />
             <Route exact path="/" component={Homepage} />
             <Route exact path="/company" component={CompanyHomePage} />
             <Route exact path="/test" component={PageSpinner} />
 
                 {props.admin.is_admin ? (
                     <>
+         <PageSpinner />
                     <Route exact path="/company/upload/question" component={CompanyQuestionPage} />
                 <Route exact path="/user/:id/test" component={McqTestPage} />
                 <Route exact path="/company/register" component={CompanyRegisterPage} />
@@ -50,7 +52,7 @@ const RouterContents = (props)=>{
 
                 <Route exact path='/user/dashboard' component={DashboardPage} />
                 <Route exact path="/company/register" component={CompanyRegisterPage} />
-                
+                 <PageSpinner />
                 <Route exact path="/user/:id/test" component={McqTestPage} />
                 <Route exact path="/user/interview/:user_id/:c_id" component={InterviewTestPage} />
                 
