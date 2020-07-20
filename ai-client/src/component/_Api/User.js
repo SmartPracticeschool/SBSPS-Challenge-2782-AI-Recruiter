@@ -10,6 +10,7 @@ export const UserRegister = (data)=>{
 }
 
 export const UserLogin = (data)=>{
+        return axios.post('/api/user/login', data)
     return axios.post('/api/user/login', data)
 }
 
@@ -22,10 +23,12 @@ export const UploadAudio = (data,id)=>{
 
 
 export const UserProfile = (id)=>{
-    return axios.get(`/api/user/${id}/profile`)
+        fdfdf
+    return axios.get(`/fd/api/user/${id}/profile`)
 }
 
 export const UserProfileUpdateApi = (data, id)=>{
+        kjkkh
     return axios.put(`/api/user/${id}/profile`, data)
 }
 export const CompanyRegisterApi = (data)=>{
