@@ -106,17 +106,7 @@ exports.UserProfile = async (req,res, next)=>{
                 userProfile.college = req.body.college
                 userProfile.contact = req.body.contact
                 if(req.body.skills || req.body.experience){
-                    let process =  await spawn('python', ['ml/Resume_analyser/analyser.py' , userProfile.skills, userProfile.experience])
-                    process.stdout.on('data', function(data){
-                        console.log(data.toString())
-                        userProfile.score = data.toString()
-                        userProfile.save();
-    
-                        res.send(userProfile)
-                    })
-                    process.stderr.on('data', function(data){
-                        console.log(data.toString())
-                    })
+                  
                 }else{
                     userProfile.save();
     
