@@ -22,7 +22,7 @@ import { CandidateScorePage } from '../component/CompanyPage/CandidateScorePage/
 import { PageSpinner } from '../component/UserProfile/PageSpinner';
 
 const RouterContents = (props)=>{
-
+console.log(props.is_admin)
 
     return(
         <Router history={history}>
